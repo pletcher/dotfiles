@@ -3,7 +3,7 @@ export PATH=$HOME/.local/bin:$HOME/go/bin:/usr/local/go/bin:$HOME/.cabal/bin:$HO
 export N_PREFIX="$HOME/n"; [[ :$PATH: == *":$N_PREFIX/bin:"* ]] || PATH+=":$N_PREFIX/bin"  # Added by n-install (see http://git.io/n-install-repo).
 
 # Path to your oh-my-zsh installation.
-export ZSH=/home/pletcher/.oh-my-zsh
+export ZSH=$HOME/.oh-my-zsh
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
@@ -109,4 +109,6 @@ alias emc="emacsclient -a '' -c"
 alias emt="emacsclient -a '' -t"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
