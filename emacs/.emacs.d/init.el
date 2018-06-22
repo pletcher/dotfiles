@@ -142,10 +142,11 @@
 (setq use-package-always-ensure t)
 (setq use-package-verbose t)
 
-(use-package zenburn-theme
-  :ensure t
+(use-package atom-one-dark-theme
   :config
-  (load-theme 'zenburn t))
+  (load-theme 'atom-one-dark t))
+
+(use-package zenburn-theme)
 
 ;; highlight the current line
 (global-hl-line-mode +1)
@@ -275,8 +276,6 @@
 
 ;; programming languages start here
 
-(use-package auctex)
-
 (use-package clojure-mode
   :config
   (add-hook 'clojure-mode-hook #'paredit-mode)
@@ -302,7 +301,9 @@
 
 (use-package olivetti
   :config
-  (olivetti-set-width 0.5))
+  (add-hook 'org-mode-hook (lambda ()
+                             (olivetti-mode)
+                             (olivetti-set-width 0.6))))
 
 (use-package pdf-tools
              :mode ("\\.pdf\\'" . pdf-view-mode)
