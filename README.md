@@ -8,7 +8,7 @@ Symlinks courtesy of [GNU stow](https://www.gnu.org/software/stow/)
 Clone the repository
 
 ```sh
-$ git clone https://github.com/pletcher/dotfiles ~/dotfiles
+$ git clone --recurse-submodules https://github.com/pletcher/dotfiles ~/dotfiles
 ```
 
 and grab the configuration file(s) you need, e.g.:
