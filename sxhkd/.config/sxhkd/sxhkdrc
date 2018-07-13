@@ -2,7 +2,7 @@
 
 ## terminal emulator
 super + Return
-	konsole
+	gnome-terminal
 
 ## program launcher
 super + @space
@@ -47,7 +47,7 @@ super + {p,b,comma,period}
 	bspc node -f @{parent,brother,first,second}
 
 ## focus the next/previous node in the current desktop
-super + {_,shift + }c
+super + {n,p}
 	bspc node -f {next,prev}.local
 
 ## focus the next/previous desktop in the current monitor
@@ -95,3 +95,9 @@ super + alt + shift + {h,j,k,l}
 ## move a floating window
 super + {Left,Down,Up,Right}
 	bspc node -v {-20 0,0 20,0 -20,20 0}
+
+# touchpad gestures
+## three-finger swipe to change desktops
+
+@button{10,11}
+	bspc desktop -f {prev,next}
