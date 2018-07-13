@@ -103,6 +103,8 @@ source $HOME/.profile
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+export EDITOR=nvim
+
 alias config="git --git-dir=$HOME/.dots/ --work-tree=$HOME"
 alias emd="emacs --daemon"
 alias emc="emacsclient -a '' -c"
