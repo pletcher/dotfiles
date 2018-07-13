@@ -304,14 +304,6 @@
   (add-hook 'org-mode-hook (lambda ()
                              (olivetti-mode)
                              (olivetti-set-width 0.6))))
-
-(use-package pdf-tools
-             :mode ("\\.pdf\\'" . pdf-view-mode)
-             :config
-             (pdf-tools-install)
-             (add-hook 'TeX-after-compilation-finished-functions
-                       #'TeX-revert-document-buffer))
-
 (use-package inf-ruby
              :config
              (add-hook 'ruby-mode-hook #'inf-ruby-minor-mode))
