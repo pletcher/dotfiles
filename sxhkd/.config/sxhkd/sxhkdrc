@@ -12,7 +12,42 @@ super + @space
 super + Escape
 	pkill -USR1 -x sxhkd
 
-# bspwm
+##########
+# System #
+##########
+
+# Raises volume
+XF86AudioRaiseVolume
+    amixer set Master 2%+
+
+# Lowers volume
+XF86AudioLowerVolume
+    amixer set Master 2%-
+
+# Mutes
+XF86AudioMute
+#amixer set Master toggle
+    amixer -D pulse set Master 1+ toggle
+
+# Brightness goes up
+XF86MonBrightnessUp
+    brightnessScript
+
+# Brightness goes down
+XF86MonBrightnessDown
+    brightnessScript
+
+# Screen lock
+XF86ScreenSaver
+    blur
+
+# Turns off laptop
+XF86Launch1
+    systemctl poweroff
+
+#########
+# bspwm #
+#########
 
 ## quit bspwm
 super + alt + Escape
