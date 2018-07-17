@@ -142,11 +142,11 @@
 (setq use-package-always-ensure t)
 (setq use-package-verbose t)
 
+(use-package zenburn-theme)
+
 (use-package atom-one-dark-theme
   :config
   (load-theme 'atom-one-dark t))
-
-(use-package zenburn-theme)
 
 ;; highlight the current line
 (global-hl-line-mode +1)
@@ -164,7 +164,7 @@
   (setq projectile-completion-system 'ivy)
   :config
   (define-key projectile-mode-map (kbd "s-p") 'projectile-command-map)
-  (projectile-global-mode 1))
+  (projectile-mode 1))
 
 (use-package pt)
 
@@ -312,6 +312,8 @@
              :config
              (setq ruby-insert-encoding-magic-comment nil)
              (add-hook 'ruby-mode-hook #'subword-mode))
+
+(use-package rust-mode)
 
 (use-package yaml-mode)
 
