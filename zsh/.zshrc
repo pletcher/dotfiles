@@ -1,16 +1,3 @@
-CABAL=$HOME/.cabal/bin
-GO=$HOME/go/bin
-GOBIN=/usr/local/go/bin
-LOCALBIN=$HOME/.local/bin
-NODEMODULES=$HOME/.config/yarn/global/node_modules/.bin
-SBIN=/usr/local/sbin
-YARN=$HOME/.yarn/bin
-
-# If you come from bash you might have to change your $PATH.
-export PATH=$LOCALBIN:$GO:$GOBIN:$SBIN:$CABAL:$YARN:$NODEMODULES:$PATH
-
-export N_PREFIX="$HOME/n"; [[ :$PATH: == *":$N_PREFIX/bin:"* ]] || PATH+=":$N_PREFIX/bin"  # Added by n-install (see http://git.io/n-install-repo).
-
 # Path to your oh-my-zsh installation.
 export ZSH=$HOME/.oh-my-zsh
 
