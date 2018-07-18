@@ -16,34 +16,33 @@ super + Escape
 # System #
 ##########
 
-# Raises volume
+# Raises volume (enable audio if muted)
 XF86AudioRaiseVolume
-    amixer set Master 2%+
+  amixer -q set Master 5%+ on
 
-# Lowers volume
+# Lowers volume (do not unmute)
 XF86AudioLowerVolume
-    amixer set Master 2%-
+  amixer -q set Master 5%-
 
 # Mutes
 XF86AudioMute
-#amixer set Master toggle
-    amixer -D pulse set Master 1+ toggle
+  amixer -q set Master off
 
 # Brightness goes up
 XF86MonBrightnessUp
-    brightnessScript
+  xbacklight +10%
 
 # Brightness goes down
 XF86MonBrightnessDown
-    brightnessScript
+  xbacklight -10%
 
 # Screen lock
 XF86ScreenSaver
-    blur
+  blur
 
 # Turns off laptop
 XF86Launch1
-    systemctl poweroff
+	systemctl poweroff
 
 #########
 # bspwm #
