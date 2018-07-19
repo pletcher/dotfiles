@@ -1,5 +1,4 @@
 CABAL=$HOME/.cabal/bin
-CARGO=$HOME/.cargo/bin
 GO=$HOME/go/bin
 GOBIN=/usr/local/go/bin
 LOCALBIN=$HOME/.local/bin
@@ -14,7 +13,6 @@ N="$N_PREFIX/bin"
 typeset -U path
 path=(
 	$CABAL
-	$CARGO
 	$GO
 	$GOBIN
 	$N

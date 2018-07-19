@@ -4,14 +4,14 @@ export ZSH=$HOME/.oh-my-zsh
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="random"
+ZSH_THEME="common"
 
 # Set list of themes to load
 # Setting this variable when ZSH_THEME=random
 # cause zsh load theme from this variable instead of
 # looking in ~/.oh-my-zsh/themes/
 # An empty array have no effect
-ZSH_THEME_RANDOM_CANDIDATES=( "norm" "pygmalion" )
+# ZSH_THEME_RANDOM_CANDIDATES=( "norm" "pygmalion" )
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
