@@ -21,3 +21,4 @@ bspc config swallow_first_click true
 
 feh --bg-fill $(find ~/.wallpapers -type f | shuf -n 1)
 
+$HOME/.config/polybar/launch.sh
