@@ -23,4 +23,4 @@ feh --bg-fill $(find ~/.wallpapers -type f | shuf -n 1)
 
 $HOME/.config/polybar/launch.sh
 
-setxkbmap -layout us,gr -variant ,polytonic -option grp:caps_toggle -option compose:rctrl-altgr
+setxkbmap -layout us,gr -variant ,polytonic -option grp:caps_toggle -option compose:ralt
