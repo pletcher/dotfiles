@@ -24,7 +24,7 @@ alert = #bd2c40
 width = 100%
 height = 27
 offset-x = 0
-offset-y = 1%
+offset-y = 18
 radius = 0
 fixed-center = true
 
@@ -37,11 +37,11 @@ line-color = #f00
 border-size = 4
 border-color = #00000000
 
-padding-left = 2
-padding-right = 2
+padding-left = 4
+padding-right = 4
 
 module-margin-left = 1
-module-margin-right = 1
+module-margin-right = 2
 
 font-0 = SanFranciscoDisplay-Regular:pixelsize=12;3
 font-1 = unifont:fontformat=truetype:size=7:antialias=false;2
@@ -51,7 +51,7 @@ font-4 = Hack:size=13;2
 
 modules-left = xbacklight volume xkeyboard
 modules-center = bspwm
-modules-right = filesystem cpu wlan eth battery date powermenu
+modules-right = filesystem cpu memory wlan eth temperature battery date powermenu
 
 tray-position = right
 tray-padding = 2
@@ -161,7 +161,7 @@ card = intel_backlight
 [module/cpu]
 type = internal/cpu
 interval = 2
-format-prefix = "  "
+format-prefix = " "
 format-prefix-foreground = ${colors.foreground}
 ;format-underline = #f90000
 label = %percentage:2%%
@@ -169,7 +169,7 @@ label = %percentage:2%%
 [module/memory]
 type = internal/memory
 interval = 2
-format-prefix = " "
+format-prefix = " "
 format-prefix-foreground = ${colors.foreground}
 ;format-underline = #4bffdc
 label = %percentage_used%%
@@ -297,12 +297,12 @@ animation-charging-framerate = 750
 [module/temperature]
 type = internal/temperature
 thermal-zone = 0
-warn-temperature = 60
+warn-temperature = 80
 
 format = <ramp> <label>
-;format-underline = #f50a4d
+format-underline = #0af5b2
 format-warn = <ramp> <label-warn>
-format-warn-underline = ${self.format-underline}
+format-warn-underline = #f50a4d
 
 label = %temperature%
 label-warn = %temperature%
@@ -311,9 +311,9 @@ label-warn-foreground = ${colors.secondary}
 ;ramp-0 = 
 ;ramp-1 = 
 ;ramp-2 = 
-ramp-0 = 
-ramp-1 = 
-ramp-2 = 
+ramp-0 = 
+ramp-1 = 
+ramp-2 = 
 ramp-foreground = ${colors.foreground}
 
 [module/powermenu]

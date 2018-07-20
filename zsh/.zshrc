@@ -68,7 +68,6 @@ plugins=(
 autoload -U compinit && compinit
 
 source $ZSH/oh-my-zsh.sh
-test -f $HOME/.profile && source $HOME/.profile
 
 # User configuration
 
@@ -84,11 +83,29 @@ test -f $HOME/.profile && source $HOME/.profile
 #   export EDITOR='mvim'
 # fi
 
+export EDITOR='nvim'
+
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
 # ssh
 # export SSH_KEY_PATH="~/.ssh/rsa_id"
+
+function source_if_exists() {
+	if [[ -f $1 && -r $1 ]]; then
+		source $1
+	fi
+}
+
+source_if_exists "$HOME/.profile"
+source_if_exists "$HOME/.fzf.zsh"
+source_if_exists "$HOME/.iterm2_shell_integration.zsh"
+
+# test -f $HOME/.profile && source $HOME/.profile
+
+# [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# test -f $HOME/.iterm2_shell_integration.zsh && source $HOME/.iterm2_shell_integration.zsh
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
@@ -99,14 +116,7 @@ test -f $HOME/.profile && source $HOME/.profile
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-export EDITOR=nvim
-
-alias config="git --git-dir=$HOME/.dots/ --work-tree=$HOME"
 alias emd="emacs --daemon"
 alias emc="emacsclient -a '' -c"
 alias emt="emacsclient -a '' -t"
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
