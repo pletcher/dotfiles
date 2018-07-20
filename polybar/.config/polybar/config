@@ -3,60 +3,62 @@
 ;   To learn more about how to configure Polybar
 ;   go to https://github.com/jaagr/polybar
 ;
-;   The README contains alot of information
+;   The README contains a lot of information
 ;
 ;=====================================================
 
 [colors]
 ;background = ${xrdb:color0:#222}
-background = #1d1f21
-background-alt = #1d1f21
+background = #383c4a
+background-alt = #383c4a
+background-transparent = #00383c4a
 ;foreground = ${xrdb:color7:#222}
-foreground = #707880
-foreground-alt = #707880
-primary = #ffb52a
+foreground = #dfdfdf
+foreground-alt = #555555
+primary = #404552
 secondary = #e60053
 alert = #bd2c40
 
-[bar/example]
-monitor = ${env:MONITOR:eDP1}
-width = 70%
+[bar/topbar]
+;monitor = ${env:MONITOR:eDP1}
+width = 100%
 height = 27
-offset-x = 15%
+offset-x = 0
 offset-y = 1%
-radius = 1.0
+radius = 0
 fixed-center = true
 
-background = ${colors.background}
+background = ${colors.background-transparent}
 foreground = ${colors.foreground}
 
-; line-size = 3
-; line-color = #f00
+line-size = 3
+line-color = #f00
 
-; border-size = 4
-; border-color = #00000000
+border-size = 4
+border-color = #00000000
 
-padding-left = 1
-padding-right = 1
+padding-left = 2
+padding-right = 2
 
 module-margin-left = 1
 module-margin-right = 1
 
-font-0 = fixed:pixelsize=10;1
-font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
-font-2 = siji:pixelsize=10;1
+font-0 = SanFranciscoDisplay-Regular:pixelsize=12;3
+font-1 = unifont:fontformat=truetype:size=7:antialias=false;2
+font-2 = FontAwesome5Free:style=Solid:pixelsize=11;3
+font-3 = FontAwesome5Free:style=Regular:pixelsize=11;3
+font-4 = Hack:size=13;2
 
-modules-left = bspwm
-modules-center = date
-modules-right = filesystem xbacklight volume xkeyboard memory cpu wlan eth battery temperature powermenu
+modules-left = xbacklight volume xkeyboard
+modules-center = bspwm
+modules-right = filesystem cpu wlan eth battery date powermenu
 
 tray-position = right
 tray-padding = 2
-;tray-transparent = true
+tray-transparent = true
 ;tray-background = #0063ff
 
 wm-restack = bspwm
-;wm-restack = i3
 
 ;override-redirect = true
 
@@ -77,8 +79,8 @@ label = %title:0:30:...%
 type = internal/xkeyboard
 blacklist-0 = num lock
 
-format-prefix = " "
-format-prefix-foreground = ${colors.foreground-alt}
+format-prefix = " "
+format-prefix-foreground = ${colors.foreground}
 format-prefix-underline = ${colors.secondary}
 
 label-layout = %layout%
@@ -95,38 +97,40 @@ interval = 25
 
 mount-0 = /
 
-label-mounted = %{F#0a81f5}%mountpoint%%{F-}: %percentage_used%%
+label-mounted =   %percentage_used%%
 label-unmounted = %mountpoint% not mounted
-label-unmounted-foreground = ${colors.foreground-alt}
+label-unmounted-foreground = ${colors.foreground}
 
 [module/bspwm]
 type = internal/bspwm
 
-label-focused = %index%
-label-focused-background = ${colors.background-alt}
-label-focused-underline= ${colors.primary}
+label-focused = ●
+label-focused-font = 5
+label-focused-background = ${colors.background-transparent}
+label-focused-underline= ${colors.background-transparent}
 label-focused-padding = 2
 
-label-occupied = %index%
+label-occupied = ○
+label-occupied-font = 5
 label-occupied-padding = 2
 
-label-urgent = %index%!
+label-urgent = ○
 label-urgent-background = ${colors.alert}
 label-urgent-padding = 2
 
-label-empty = %index%
-label-empty-foreground = ${colors.foreground-alt}
+label-empty = 
+label-empty-foreground = ${colors.foreground}
 label-empty-padding = 2
 
 [module/mpd]
 type = internal/mpd
 format-online = <label-song>  <icon-prev> <icon-stop> <toggle> <icon-next>
 
-icon-prev = 
-icon-stop = 
-icon-play = 
-icon-pause = 
-icon-next = 
+icon-prev = 
+icon-stop = 
+icon-play = 
+icon-pause = 
+icon-next = 
 
 label-song-maxlen = 25
 label-song-ellipsis = true
@@ -135,10 +139,11 @@ label-song-ellipsis = true
 type = internal/xbacklight
 
 format = <label> <bar>
-label = BL
+label = 
+output = eDP1
 
 bar-width = 10
-bar-indicator = |
+bar-indicator = 
 bar-indicator-foreground = #ff
 bar-indicator-font = 2
 bar-fill = ─
@@ -156,17 +161,17 @@ card = intel_backlight
 [module/cpu]
 type = internal/cpu
 interval = 2
-format-prefix = " "
-format-prefix-foreground = ${colors.foreground-alt}
-format-underline = #f90000
+format-prefix = "  "
+format-prefix-foreground = ${colors.foreground}
+;format-underline = #f90000
 label = %percentage:2%%
 
 [module/memory]
 type = internal/memory
 interval = 2
-format-prefix = " "
-format-prefix-foreground = ${colors.foreground-alt}
-format-underline = #4bffdc
+format-prefix = " "
+format-prefix-foreground = ${colors.foreground}
+;format-underline = #4bffdc
 label = %percentage_used%%
 
 [module/wlan]
@@ -175,7 +180,7 @@ interface = wlp2s0
 interval = 3.0
 
 format-connected = <ramp-signal> <label-connected>
-format-connected-underline = #9f78e1
+;format-connected-underline = #9f78e1
 label-connected = %essid%
 
 format-disconnected =
@@ -184,21 +189,26 @@ format-disconnected =
 ;label-disconnected = %ifname% disconnected
 ;label-disconnected-foreground = ${colors.foreground-alt}
 
-ramp-signal-0 = 
-ramp-signal-1 = 
-ramp-signal-2 = 
-ramp-signal-3 = 
-ramp-signal-4 = 
-ramp-signal-foreground = ${colors.foreground-alt}
+;ramp-signal-0 = 
+;ramp-signal-1 = 
+;ramp-signal-2 = 
+;ramp-signal-3 = 
+;ramp-signal-4 = 
+ramp-signal-0 = 
+ramp-signal-1 = 
+ramp-signal-2 = 
+ramp-signal-3 = 
+ramp-signal-4 = 
+ramp-signal-foreground = ${colors.foreground}
 
 [module/eth]
 type = internal/network
 interface = enp0s31f6
 interval = 3.0
 
-format-connected-underline = #55aa55
-format-connected-prefix = " "
-format-connected-prefix-foreground = ${colors.foreground-alt}
+;format-connected-underline = #55aa55
+format-connected-prefix = " "
+format-connected-prefix-foreground = ${colors.foreground}
 label-connected = %local_ip%
 
 format-disconnected =
@@ -217,9 +227,9 @@ date-alt = " %Y-%m-%d"
 time = %H:%M
 time-alt = %H:%M:%S
 
-format-prefix = 
-format-prefix-foreground = ${colors.foreground-alt}
-format-underline = #0a6cf5
+format-prefix = 
+format-prefix-foreground = ${colors.foreground}
+;format-underline = #0a6cf5
 
 label = %date% %time%
 
@@ -227,11 +237,11 @@ label = %date% %time%
 type = internal/volume
 
 format-volume = <label-volume> <bar-volume>
-label-volume = VOL
+label-volume = 
 label-volume-foreground = ${root.foreground}
 
-format-muted-prefix = " "
-format-muted-foreground = ${colors.foreground-alt}
+format-muted-prefix = " "
+format-muted-foreground = ${colors.foreground}
 label-muted = sound muted
 
 bar-volume-width = 10
@@ -243,8 +253,8 @@ bar-volume-foreground-4 = #55aa55
 bar-volume-foreground-5 = #f5a70a
 bar-volume-foreground-6 = #ff5555
 bar-volume-gradient = false
-bar-volume-indicator = |
-bar-volume-indicator-font = 2
+bar-volume-indicator = 
+bar-volume-indicator-font = 5
 bar-volume-fill = ─
 bar-volume-fill-font = 2
 bar-volume-empty = ─
@@ -263,19 +273,25 @@ format-charging-underline = #ffb52a
 format-discharging = <ramp-capacity> <label-discharging>
 format-discharging-underline = ${self.format-charging-underline}
 
-format-full-prefix = " "
-format-full-prefix-foreground = ${colors.foreground-alt}
-format-full-underline = ${self.format-charging-underline}
+format-full-prefix = " "
+format-full-prefix-foreground = ${colors.foreground}
+;format-full-underline = ${self.format-charging-underline}
 
-ramp-capacity-0 = 
-ramp-capacity-1 = 
-ramp-capacity-2 = 
-ramp-capacity-foreground = ${colors.foreground-alt}
+;ramp-capacity-0 = 
+;ramp-capacity-1 = 
+;ramp-capacity-2 = 
+ramp-capacity-0 = 
+ramp-capacity-1 = 
+ramp-capacity-2 = 
+ramp-capacity-foreground = ${colors.foreground}
 
-animation-charging-0 = 
-animation-charging-1 = 
-animation-charging-2 = 
-animation-charging-foreground = ${colors.foreground-alt}
+;animation-charging-0 = 
+;animation-charging-1 = 
+;animation-charging-2 = 
+animation-charging-0 = 
+animation-charging-1 = 
+animation-charging-2 = 
+animation-charging-foreground = ${colors.foreground}
 animation-charging-framerate = 750
 
 [module/temperature]
@@ -284,7 +300,7 @@ thermal-zone = 0
 warn-temperature = 60
 
 format = <ramp> <label>
-format-underline = #f50a4d
+;format-underline = #f50a4d
 format-warn = <ramp> <label-warn>
 format-warn-underline = ${self.format-underline}
 
@@ -292,10 +308,13 @@ label = %temperature%
 label-warn = %temperature%
 label-warn-foreground = ${colors.secondary}
 
-ramp-0 = 
-ramp-1 = 
-ramp-2 = 
-ramp-foreground = ${colors.foreground-alt}
+;ramp-0 = 
+;ramp-1 = 
+;ramp-2 = 
+ramp-0 = 
+ramp-1 = 
+ramp-2 = 
+ramp-foreground = ${colors.foreground}
 
 [module/powermenu]
 type = custom/menu
@@ -304,9 +323,10 @@ expand-right = true
 
 format-spacing = 1
 
-label-open = 
-label-open-foreground = ${colors.secondary}
-label-close =  cancel
+label-open = 
+label-open-foreground = ${colors.foreground}
+label-close = 
+;label-close =  cancel
 label-close-foreground = ${colors.secondary}
 label-separator = |
 label-separator-foreground = ${colors.foreground-alt}

@@ -1,10 +1,10 @@
 #! /bin/sh
 
-xrandr --output eDP-1 --mode 1920x1080 --dpi 210
+xrandr --output eDP1 --mode 2560x1440 --scale 1.2x1.2 --dpi 209
 
 sxhkd &
 
-bspc monitor -d I II III IV V VI VII VIII IX X
+bspc monitor -d I II III IV
 
 bspc config border_width 3
 bspc config bottom_padding 24
@@ -20,3 +20,4 @@ bspc config click_to_focus true
 bspc config swallow_first_click true
 
 feh --bg-fill $(find ~/.wallpapers -type f | shuf -n 1)
+
