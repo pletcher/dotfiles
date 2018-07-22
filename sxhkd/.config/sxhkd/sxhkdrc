@@ -2,7 +2,7 @@
 
 ## terminal emulator
 super + Return
-	alacritty
+	WINIT_HIDPI_FACTOR=1.5 alacritty
 
 ## program launcher
 super + @space

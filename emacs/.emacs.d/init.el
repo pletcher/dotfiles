@@ -290,6 +290,10 @@
   (add-hook 'cider-repl-mode-hook #'paredit-mode)
   (add-hook 'cider-repl-mode-hook #'rainbow-delimiters-mode))
 
+(use-package editorconfig
+  :config
+  (editorconfig-mode 1))
+
 (use-package elixir-mode
   :config
   (add-hook 'elixir-mode #'subword-mode))

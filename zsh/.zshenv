@@ -6,7 +6,7 @@ NODE_MODULES=$HOME/.config/yarn/global/node_modules/.bin
 SBIN=/usr/local/sbin
 YARN=$HOME/.yarn/bin
 
-export N_PREFIX=$HOME/n
+export N_PREFIX=$HOME/.n
 
 N="$N_PREFIX/bin"
 
