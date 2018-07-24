@@ -3,6 +3,7 @@
 xrandr --output eDP1 --mode 2560x1440 --scale 1.2x1.2 --dpi 209
 
 sxhkd &
+libinput-gestures &
 
 bspc monitor -d I II III IV
 
