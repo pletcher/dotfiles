@@ -144,9 +144,7 @@
 
 (use-package zenburn-theme)
 
-(use-package atom-one-dark-theme
-  :config
-  (load-theme 'atom-one-dark t))
+(use-package nord-theme)
 
 ;; highlight the current line
 (global-hl-line-mode +1)

@@ -6,7 +6,8 @@ super + Return
 
 ## program launcher
 super + @space
-	dmenu_run
+	rofi -show run
+#	dmenu_run
 
 ## reload sxhkd config
 super + Escape

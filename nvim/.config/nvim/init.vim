@@ -1,11 +1,12 @@
 if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
   silent !curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs
     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+  autocmd VimEnter * PlugInstall --sync | source ~/.config/nvim/init.vim
 endif
 
 call plug#begin('~/.local/share/nvim/plugged')
 
+Plug 'arcticicestudio/nord-vim'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
@@ -13,7 +14,7 @@ Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
 Plug 'pangloss/vim-javascript'
 Plug 'plasticboy/vim-markdown'
-Plug 'rakr/vim-one'
+Plug 'vim-airline/vim-airline'
 Plug 'w0rp/ale'
 
 call plug#end()
@@ -37,13 +38,20 @@ if (empty($TMUX))
   endif
 endif
 
+let g:airline_detect_spell = 1
+let g:airline_detect_spelllang = 1
+
 let g:ale_lint_on_save = 1
 let g:ale_lint_on_text_changed = 1
 
 let g:javascript_plugin_flow = 1
 let g:jsx_ext_required = 0
 
-let g:one_allow_italics = 1
+let g:nord_comment_brightness = 12
+let g:nord_italic = 1
+let g:nord_italic_comments = 1
+let g:nord_underline = 1
+
 
 set nocompatible
 
@@ -60,5 +68,5 @@ set tabstop=2
 syntax on
 filetype plugin indent on
 
-colorscheme one
+colorscheme nord
 
