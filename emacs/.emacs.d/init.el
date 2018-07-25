@@ -101,6 +101,8 @@
 (set-terminal-coding-system 'utf-8)
 (set-keyboard-coding-system 'utf-8)
 
+(set-default-font "InputMonoNarrow light 10")
+
 (setq hippie-expand-try-functions-list '(try-expand-dabbrev
                                          try-expand-dabbrev-all-buffers
                                          try-expand-dabbrev-from-kill
@@ -133,8 +135,9 @@
 ;; smart tab behavior - indent or complete
 (setq tab-always-indent 'complete)
 
-(unless (package-installed-p 'use-package)
-  (package-install 'use-package))
+(eval-when-compile
+  (unless (package-installed-p 'use-package)
+    (package-install 'use-package)))
 
 (require 'use-package)
 
@@ -142,9 +145,9 @@
 (setq use-package-always-ensure t)
 (setq use-package-verbose t)
 
-(use-package zenburn-theme)
-
-(use-package nord-theme)
+(use-package nord-theme
+  :config
+  (load-theme 'nord t))
 
 ;; highlight the current line
 (global-hl-line-mode +1)

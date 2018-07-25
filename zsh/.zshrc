@@ -117,6 +117,6 @@ source_if_exists "$HOME/.iterm2_shell_integration.zsh"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 alias emd="emacs --daemon"
-alias emc="emacsclient -a '' -c"
-alias emt="emacsclient -a '' -t"
-
+alias emc="emacsclient -a '' -c &"
+alias emt="emacsclient -a '' -t &"
+alias zotero="$HOME/.local/lib/Zotero/zotero &"

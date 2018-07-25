@@ -20,7 +20,7 @@ bspc config gapless_monocle true
 bspc config click_to_focus true
 bspc config swallow_first_click true
 
-feh --bg-fill $(find ~/.wallpapers -type f | shuf -n 1)
+feh --bg-fill ~/.wallpapers/mojave-night.jpg # $(find ~/.wallpapers -type f | shuf -n 1)
 
 compton -b --inactive-dim 0.5 --focus-exclude '_NET_WM_NAME@:s = "rofi"'
 

@@ -1,7 +1,7 @@
 CABAL=$HOME/.cabal/bin
 GO=$HOME/go/bin
-GOBIN=/usr/local/go/bin
-LOCALBIN=$HOME/.local/bin
+GO_BIN=/usr/local/go/bin
+LOCAL_BIN=$HOME/.local/bin
 NODE_MODULES=$HOME/.config/yarn/global/node_modules/.bin
 SBIN=/usr/local/sbin
 YARN=$HOME/.yarn/bin
@@ -14,7 +14,7 @@ typeset -U path
 path=(
 	$CABAL
 	$GO
-	$GOBIN
+	$GO_BIN
 	$N
 	$YARN
 	$NODE_MODULES
