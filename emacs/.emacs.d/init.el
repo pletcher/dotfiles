@@ -67,7 +67,7 @@
 (setq inhibit-startup-screen t)
 
 (setq scroll-margin 0
-      scroll-conservatively 100000
+      scroll-conservatively 10000
       scroll-preserve-screen-position 1)
 
 (line-number-mode t)
@@ -309,6 +309,7 @@
   (add-hook 'org-mode-hook (lambda ()
                              (olivetti-mode)
                              (olivetti-set-width 0.6))))
+
 (use-package inf-ruby
              :config
              (add-hook 'ruby-mode-hook #'inf-ruby-minor-mode))
