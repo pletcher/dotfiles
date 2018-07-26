@@ -1,4 +1,4 @@
-if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
+if empty(glob("~/.local/share/nvim/site/autoload/plug.vim"))
   silent !curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs
     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
   autocmd VimEnter * PlugInstall --sync | source ~/.config/nvim/init.vim
@@ -7,6 +7,7 @@ endif
 call plug#begin('~/.local/share/nvim/plugged')
 
 Plug 'arcticicestudio/nord-vim'
+Plug 'dag/vim-fish'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
