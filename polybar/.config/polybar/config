@@ -20,7 +20,7 @@ secondary = #e60053
 alert = #bd2c40
 
 [bar/topbar]
-;monitor = ${env:MONITOR:eDP1}
+monitor = ${env:MONITOR:eDP1}
 width = 100%
 height = 27
 offset-x = 0
@@ -47,11 +47,12 @@ font-0 = SanFranciscoDisplay-Regular:pixelsize=12;3
 font-1 = unifont:fontformat=truetype:size=7:antialias=false;2
 font-2 = FontAwesome5Free:style=Solid:pixelsize=11;3
 font-3 = FontAwesome5Free:style=Regular:pixelsize=11;3
-font-4 = Hack:size=13;2
+font-4 = FontAwesome5Brands:style=Regular:pixelsize=11;3
+font-5 = Hack:size=13;2
 
-modules-left = xbacklight volume xkeyboard terminal
+modules-left = xbacklight volume xkeyboard
 modules-center = bspwm
-modules-right = filesystem cpu memory wlan eth temperature battery date powermenu
+modules-right = filesystem cpu memory wlan eth temperature battery date escapehatch
 
 tray-position = left
 tray-padding = 2
@@ -69,13 +70,40 @@ scroll-down = bspwm-deskprev
 ;scroll-down = i3wm-wsprev
 
 cursor-click = pointer
-cursor-scroll = ns-resize
+; cursor-scroll = ns-resize
 
-[module/terminal]
-type = custom/script
-format = <label>
-label = " "
-click-left = ./launch_terminal.sh
+;in case something blows up
+[module/escapehatch]
+type = custom/menu
+
+expand-right = true
+
+format-spacing = 1
+
+;label-open = 
+label-open = 
+label-open-foreground = ${colors.foreground}
+label-close = 
+label-close-foreground = ${colors.secondary}
+label-separator = |
+label-separator-foreground = ${colors.foreground-alt}
+
+menu-0-0 = apps
+menu-0-0-exec = menu-open-1
+menu-0-1 = power
+menu-0-1-exec = menu-open-2
+
+menu-1-0 = 
+menu-1-0-exec = ./launch_terminal.sh
+menu-1-1 = 
+menu-1-1-exec = ./launch_browser.sh
+
+menu-2-0 = power off
+menu-2-0-exec = shutdown now
+menu-2-1 = cancel
+menu-2-1-exec = menu-open-0
+
+
 
 [module/xwindow]
 type = internal/xwindow
@@ -97,15 +125,6 @@ label-indicator-margin = 1
 label-indicator-background = ${colors.secondary}
 label-indicator-underline = ${colors.secondary}
 
-[module/filesystem]
-type = internal/fs
-interval = 25
-
-mount-0 = /
-
-label-mounted =   %percentage_used%%
-label-unmounted = %mountpoint% not mounted
-label-unmounted-foreground = ${colors.foreground}
 
 [module/bspwm]
 type = internal/bspwm
@@ -128,6 +147,16 @@ label-empty =
 label-empty-foreground = ${colors.foreground}
 label-empty-padding = 2
 
+
+[module/filesystem]
+type = internal/fs
+interval = 25
+
+mount-0 = /
+
+label-mounted =   %percentage_used%%
+label-unmounted = %mountpoint% not mounted
+label-unmounted-foreground = ${colors.foreground}
 [module/mpd]
 type = internal/mpd
 format-online = <label-song>  <icon-prev> <icon-stop> <toggle> <icon-next>
@@ -308,34 +337,6 @@ ramp-1 = 
 ramp-2 = 
 ramp-foreground = ${colors.foreground}
 
-[module/powermenu]
-type = custom/menu
-
-expand-right = true
-
-format-spacing = 1
-
-label-open = 
-label-open-foreground = ${colors.foreground}
-label-close = 
-label-close-foreground = ${colors.secondary}
-label-separator = |
-label-separator-foreground = ${colors.foreground-alt}
-
-menu-0-0 = reboot
-menu-0-0-exec = menu-open-1
-menu-0-1 = power off
-menu-0-1-exec = menu-open-2
-
-menu-1-0 = cancel
-menu-1-0-exec = menu-open-0
-menu-1-1 = reboot
-menu-1-1-exec = sudo reboot
-
-menu-2-0 = power off
-menu-2-0-exec = shutdown now
-menu-2-1 = cancel
-menu-2-1-exec = menu-open-0
 
 [settings]
 screenchange-reload = true
