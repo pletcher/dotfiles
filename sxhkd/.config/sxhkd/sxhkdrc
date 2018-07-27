@@ -1,8 +1,10 @@
+#!/bin/sh
+
 # globals
 
 ## terminal emulator
 super + Return
-	WINIT_HIDPI_FACTOR=1.5 alacritty
+	env WINIT_HIDPI_FACTOR=1.5 alacritty
 
 ## program launcher
 super + @space
