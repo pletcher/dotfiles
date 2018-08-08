@@ -3,6 +3,7 @@ GO=$HOME/go/bin
 GO_BIN=/usr/local/go/bin
 LOCAL_BIN=$HOME/.local/bin
 NODE_MODULES=$HOME/.config/yarn/global/node_modules/.bin
+PYENV=$HOME/.pyenv/shims
 SBIN=/usr/local/sbin
 YARN=$HOME/.yarn/bin
 
@@ -18,6 +19,7 @@ path=(
 	$N
 	$YARN
 	$NODE_MODULES
+	$PYENV
 	$LOCAL_BIN
 	$SBIN
 	$path[@]

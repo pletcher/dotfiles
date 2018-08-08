@@ -58,7 +58,8 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 plugins=(
   bundler
   dotenv
-  git
+  emacs
+	git
   lein
   ruby
   yarn
@@ -70,6 +71,21 @@ autoload -U compinit && compinit
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
+
+CABAL=$HOME/.cabal/bin
+GO=$HOME/go/bin
+GO_BIN=/usr/local/go/bin
+LOCAL_BIN=$HOME/.local/bin
+NODE_MODULES=$HOME/.config/yarn/global/node_modules/.bin
+PYENV=$HOME/.pyenv/shims
+SBIN=/usr/local/sbin
+YARN=$HOME/.yarn/bin
+
+export N_PREFIX=$HOME/.n
+
+N="$N_PREFIX/bin"
+
+export PATH=$CABAL:$GO:$GO_BIN:$PYENV:$NODE_MODULES:$YARN:$LOCAL_BIN:$SBIN:$PATH
 
 # export MANPATH="/usr/local/man:$MANPATH"
 
@@ -98,6 +114,7 @@ function source_if_exists() {
 }
 
 source_if_exists "$HOME/.profile"
+source_if_exists "$HOME/.zshenv"
 source_if_exists "$HOME/.fzf.zsh"
 source_if_exists "$HOME/.iterm2_shell_integration.zsh"
 
