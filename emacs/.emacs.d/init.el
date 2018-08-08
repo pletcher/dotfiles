@@ -101,7 +101,7 @@
 (set-terminal-coding-system 'utf-8)
 (set-keyboard-coding-system 'utf-8)
 
-(set-default-font "InputMonoNarrow light 10")
+(set-default-font "InputMonoNarrow light 9")
 
 (setq hippie-expand-try-functions-list '(try-expand-dabbrev
                                          try-expand-dabbrev-all-buffers
@@ -309,6 +309,8 @@
   (add-hook 'org-mode-hook (lambda ()
                              (olivetti-mode)
                              (olivetti-set-width 0.6))))
+
+(use-package python-mode)
 
 (use-package inf-ruby
              :config
