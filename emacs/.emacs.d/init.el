@@ -83,6 +83,7 @@
 
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 4)
+(setq-default indent-line-function 'insert-tab)
 
 (setq require-final-newline t)
 
@@ -101,7 +102,7 @@
 (set-terminal-coding-system 'utf-8)
 (set-keyboard-coding-system 'utf-8)
 
-(set-default-font "InputMonoNarrow light 9")
+(set-frame-font "InputMonoNarrow light 9")
 
 (setq hippie-expand-try-functions-list '(try-expand-dabbrev
                                          try-expand-dabbrev-all-buffers
@@ -247,6 +248,11 @@
   :config
   (global-anzu-mode))
 
+(use-package auto-indent-mode
+  :config
+  (auto-indent-global-mode)
+  (setq auto-indent-indent-style 'conservative))
+
 (use-package easy-kill
   :config
   (global-set-key [remap kill-ring-save] 'easy-kill))
@@ -260,12 +266,6 @@
   :bind
   (([(meta shift up)] . move-text-up)
    ([(meta shift down)] . move-text-down)))
-
-(use-package rainbow-delimiters)
-
-(use-package rainbow-mode
-  :config
-  (add-hook 'prog-mode-hook #'rainbow-mode))
 
 (use-package whitespace
   :init

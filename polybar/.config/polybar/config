@@ -41,10 +41,11 @@ padding-right = 4
 module-margin-left = 1
 module-margin-right = 2
 
-font-0 = Hack:pixelsize=16;2 
-font-1 = FontAwesome5Free:style=Solid:pixelsize=16;3
-font-2 = FontAwesome5Free:style=Regular:pixelsize=16;3
-font-3 = FontAwesome5Brands:style=Regular:pixelsize=16;3
+font-0 = Hack:pixelsize=16;2
+font-1 = icomoon:style=Regular:pixelsize=20;3
+font-2 = FontAwesome5Free:style=Solid:pixelsize=16;3
+font-3 = FontAwesome5Free:style=Regular:pixelsize=16;3
+font-4 = FontAwesome5Brands:style=Regular:pixelsize=16;3
 
 modules-left = xbacklight volume xkeyboard
 modules-center = bspwm
@@ -65,9 +66,10 @@ expand-right = true
 
 format-spacing = 1
 
-label-open = 
+;; icomoon more-horizontal e99b
+label-open = 
 label-open-foreground = ${colors.foreground}
-label-close = 
+label-close = 
 label-close-foreground = ${colors.secondary}
 label-separator = |
 label-separator-foreground = ${colors.foreground-alt}
@@ -77,15 +79,19 @@ menu-0-0-exec = menu-open-1
 menu-0-1 = power
 menu-0-1-exec = menu-open-2
 
-menu-1-0 = 
+menu-1-0 = 
 menu-1-0-exec = ./launch_terminal.sh
-menu-1-1 = 
+menu-1-1 = 
 menu-1-1-exec = ./launch_browser.sh
 
-menu-2-0 = power off
+;; icomoon power e9b5
+menu-2-0 = 
 menu-2-0-exec = shutdown now
-menu-2-1 = cancel
-menu-2-1-exec = menu-open-0
+;; icomoon rotate-cw e9bd
+menu-2-1 = 
+menu-2-1-exec = reboot
+menu-2-2 = 
+menu-2-2-exec = menu-open-0
 
 [module/xwindow]
 type = internal/xwindow
@@ -95,7 +101,7 @@ label = %title:0:30:...%
 type = internal/xkeyboard
 blacklist-0 = num lock
 
-format-prefix = " "
+format-prefix = " "
 format-prefix-foreground = ${colors.foreground}
 format-prefix-underline = ${colors.foreground-alt}
 
@@ -110,17 +116,18 @@ label-indicator-underline = ${colors.secondary}
 [module/bspwm]
 type = internal/bspwm
 
-label-focused = ●
+label-focused = 
 label-focused-font = 5
 label-focused-background = ${colors.background-transparent}
 label-focused-underline= ${colors.background-transparent}
 label-focused-padding = 2
 
-label-occupied = ○
+;; icomoon circle e937
+label-occupied = 
 label-occupied-font = 5
 label-occupied-padding = 2
 
-label-urgent = ○
+label-urgent = 
 label-urgent-background = ${colors.alert}
 label-urgent-padding = 2
 
@@ -132,9 +139,12 @@ label-empty-padding = 2
 type = internal/fs
 interval = 25
 
-mount-0 = /
+mount-0 = /home
 
-label-mounted =  %percentage_used%%
+;; icomoon bluetooth e920 
+
+;; icomoon hard-drive e974
+label-mounted =  %percentage_used%%
 label-unmounted = %mountpoint% not mounted
 label-unmounted-foreground = ${colors.foreground}
 
@@ -142,11 +152,13 @@ label-unmounted-foreground = ${colors.foreground}
 type = internal/mpd
 format-online = <label-song>  <icon-prev> <icon-stop> <toggle> <icon-next>
 
-icon-prev = 
-icon-stop = 
-icon-play = 
-icon-pause = 
-icon-next = 
+icon-prev = 
+icon-stop = 
+icon-play = 
+icon-pause = 
+;; icomoon fast-forward e95f
+icon-next = 
+;; 
 
 label-song-maxlen = 25
 label-song-ellipsis = true
@@ -155,11 +167,11 @@ label-song-ellipsis = true
 type = internal/xbacklight
 
 format = <label> <bar>
-label = 
+label = 
 output = eDP1
 
 bar-width = 10
-bar-indicator = 
+bar-indicator = 
 bar-indicator-foreground = #ff
 bar-indicator-font = 2
 bar-fill = ─
@@ -177,14 +189,17 @@ card = intel_backlight
 [module/cpu]
 type = internal/cpu
 interval = 2
-format-prefix = ""
+;; icomoon CPU e94d
+format-prefix = " "
 format-prefix-foreground = ${colors.foreground}
 label = %percentage:2%%
 
 [module/memory]
 type = internal/memory
 interval = 2
-format-prefix = " "
+;; icomoon activity e900
+format-prefix = " "
+;; " "
 format-prefix-foreground = ${colors.foreground}
 label = %percentage_used%%
 
@@ -197,12 +212,12 @@ format-connected = <ramp-signal> <label-connected>
 label-connected = %essid%
 
 format-disconnected =
-
-ramp-signal-0 = 
-ramp-signal-1 = 
-ramp-signal-2 = 
-ramp-signal-3 = 
-ramp-signal-4 = 
+;; icomoon wifi e9ff
+ramp-signal-0 = 
+ramp-signal-1 = 
+ramp-signal-2 = 
+ramp-signal-3 = 
+ramp-signal-4 = 
 ramp-signal-foreground = ${colors.foreground}
 
 [module/eth]
@@ -210,7 +225,7 @@ type = internal/network
 interface = enp0s31f6
 interval = 3.0
 
-format-connected-prefix = ""
+format-connected-prefix = ""
 format-connected-prefix-foreground = ${colors.foreground}
 label-connected = %local_ip%
 
@@ -226,7 +241,7 @@ date-alt = " %Y-%m-%d"
 time = %H:%M
 time-alt = %H:%M:%S
 
-format-prefix = 
+format-prefix = 
 format-prefix-foreground = ${colors.foreground}
 
 label = %date% %time%
@@ -235,10 +250,10 @@ label = %date% %time%
 type = internal/volume
 
 format-volume = <label-volume> <bar-volume>
-label-volume = 
+label-volume = 
 label-volume-foreground = ${root.foreground}
 
-format-muted-prefix = " "
+format-muted-prefix = " "
 format-muted-foreground = ${colors.foreground}
 label-muted = 
 
@@ -251,7 +266,7 @@ bar-volume-foreground-4 = ${colors.secondary}
 bar-volume-foreground-5 = ${colors.secondary}
 bar-volume-foreground-6 = ${colors.alert}
 bar-volume-gradient = false
-bar-volume-indicator = 
+bar-volume-indicator = 
 bar-volume-indicator-font = 5
 bar-volume-fill = ─
 bar-volume-fill-font = 2
@@ -271,20 +286,20 @@ format-charging-underline = ${colors.foreground}
 format-discharging = <ramp-capacity> <label-discharging>
 format-discharging-underline = ${colors.secondary}
 
-format-full-prefix = " "
+format-full-prefix = " "
 format-full-prefix-foreground = ${colors.foreground}
 
-ramp-capacity-0 = 
-ramp-capacity-1 = 
-ramp-capacity-2 = 
-ramp-capacity-3 = 
+ramp-capacity-0 = 
+ramp-capacity-1 = 
+ramp-capacity-2 = 
+ramp-capacity-3 = 
 ramp-capacity-foreground = ${colors.foreground}
 
-animation-charging-0 = 
-animation-charging-1 = 
-animation-charging-2 = 
+animation-charging-0 = 
+animation-charging-1 = 
+animation-charging-2 = 
 animation-charging-foreground = ${colors.foreground}
-animation-charging-framerate = 750
+animation-charging-framerate = 0
 
 [module/temperature]
 type = internal/temperature
@@ -300,9 +315,9 @@ label = %temperature%
 label-warn = %temperature%
 label-warn-foreground = ${colors.alert}
 
-ramp-0 = 
-ramp-1 = 
-ramp-2 = 
+ramp-0 = 
+ramp-1 = 
+ramp-2 = 
 ramp-foreground = ${colors.foreground}
 
 
