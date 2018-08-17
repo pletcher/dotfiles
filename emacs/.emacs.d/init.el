@@ -82,7 +82,7 @@
                  "%b"))))
 
 (setq-default indent-tabs-mode nil)
-(setq-default tab-width 4)
+(setq-default tab-width 2)
 (setq-default indent-line-function 'insert-tab)
 
 (setq require-final-newline t)
@@ -102,7 +102,7 @@
 (set-terminal-coding-system 'utf-8)
 (set-keyboard-coding-system 'utf-8)
 
-(set-frame-font "InputMonoNarrow light 9")
+(set-frame-font "InputMonoNarrow light 10")
 
 (setq hippie-expand-try-functions-list '(try-expand-dabbrev
                                          try-expand-dabbrev-all-buffers
@@ -133,8 +133,19 @@
 (global-set-key (kbd "s-q") #'fill-paragraph)
 (global-set-key (kbd "s-x") #'execute-extended-command)
 
+;; newline-and-indent on RETurn
+(global-set-key (kbd "RET") 'newline-and-indent)
+
 ;; smart tab behavior - indent or complete
 (setq tab-always-indent 'complete)
+
+(require 'smartparens-config)
+(setq sp-base-key-bindings 'paredit)
+(setq sp-autoskip-closing-pair 'always)
+(setq sp-hybrid-kill-entire-symbol nil)
+(sp-use-paredit-bindings)
+
+(show-smartparens-global-mode +1)
 
 (eval-when-compile
   (unless (package-installed-p 'use-package)
@@ -145,6 +156,8 @@
 ;; always use :ensure
 (setq use-package-always-ensure t)
 (setq use-package-verbose t)
+
+(use-package diminish)
 
 (use-package nord-theme
   :config
@@ -432,7 +445,17 @@
 ;; temporarily highlight changes from yanking, etc
 (use-package volatile-highlights
   :config
-  (volatile-highlights-mode +1))
+  (volatile-highlights-mode +1)
+  (diminish 'volatile-highlights-mode))
+
+;; https://github.com/hbin/emacs.d/blob/f4009876bd009fc3c499bfbc26102be895d65ee6/core/prelude-editor.el#L195
+(require 'rect)
+(defadvice kill-region (before smart-cut activate compile)
+  "When called interactively with no active region, kill a single line instead."
+  (interactive
+   (if mark-active (list (region-beginning) (region-end) rectangle-mark-mode)
+     (list (line-beginning-position)
+           (line-beginning-position 2)))))
 
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 

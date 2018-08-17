@@ -93,9 +93,9 @@ menu-2-1-exec = reboot
 menu-2-2 = 
 menu-2-2-exec = menu-open-0
 
-[module/xwindow]
-type = internal/xwindow
-label = %title:0:30:...%
+;; [module/xwindow]
+;; type = internal/xwindow
+;; label = %title:0:30:...%
 
 [module/xkeyboard]
 type = internal/xkeyboard
