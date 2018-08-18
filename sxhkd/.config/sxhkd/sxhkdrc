@@ -4,7 +4,7 @@
 
 ## terminal emulator
 super + Return
-	env WINIT_HIDPI_FACTOR=1.5 alacritty
+	env WINIT_HIDPI_FACTOR=1.5 ~/.local/bin/alacritty
 
 ## program launcher
 super + @space
