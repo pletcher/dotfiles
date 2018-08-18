@@ -81,40 +81,37 @@ inherit = module/xbacklight
 type = internal/backlight
 card = intel_backlight
 
-;in case something blows up
-[module/escapehatch]
-type = custom/menu
+[module/volume]
+type = internal/volume
 
-expand-right = true
+format-volume = <ramp-volume> <bar-volume>
+label-volume = 
+label-volume-foreground = ${root.foreground}
 
-format-spacing = 1
+format-muted = <label-muted> <bar-volume>
+format-muted-foreground = ${colors.foreground}
+label-muted = 
 
-;; icomoon more-horizontal e99b
-label-open = 
-label-open-foreground = ${colors.foreground}
-label-close = 
-label-close-foreground = ${colors.secondary}
-label-separator = |
-label-separator-foreground = ${colors.foreground-alt}
+ramp-volume-0 = 
+ramp-volume-1 = 
+ramp-volume-2 = 
 
-menu-0-0 = apps
-menu-0-0-exec = menu-open-1
-menu-0-1 = power
-menu-0-1-exec = menu-open-2
-
-menu-1-0 = 
-menu-1-0-exec = ./launch_terminal.sh
-menu-1-1 = 
-menu-1-1-exec = ./launch_browser.sh
-
-;; icomoon power e9b5
-menu-2-0 = 
-menu-2-0-exec = shutdown now
-;; icomoon rotate-cw e9bd
-menu-2-1 = 
-menu-2-1-exec = reboot
-menu-2-2 = 
-menu-2-2-exec = menu-open-0
+bar-volume-width = 10
+bar-volume-foreground-0 = ${colors.foreground}
+bar-volume-foreground-1 = ${colors.foreground}
+bar-volume-foreground-2 = ${colors.primary}
+bar-volume-foreground-3 = ${colors.primary}
+bar-volume-foreground-4 = ${colors.secondary}
+bar-volume-foreground-5 = ${colors.secondary}
+bar-volume-foreground-6 = ${colors.alert}
+bar-volume-gradient = false
+bar-volume-indicator = 
+bar-volume-indicator-font = 5
+bar-volume-fill = ─
+bar-volume-fill-font = 2
+bar-volume-empty = ─
+bar-volume-empty-font = 2
+bar-volume-empty-foreground = ${colors.foreground-alt}
 
 [module/xkeyboard]
 type = internal/xkeyboard
@@ -201,7 +198,6 @@ format-connected = <ramp-signal> <label-connected>
 label-connected = %essid%
 
 format-disconnected =
-;; icomoon wifi e9ff
 ramp-signal-0 = 
 ramp-signal-1 = 
 ramp-signal-2 = 
@@ -220,52 +216,24 @@ label-connected = %local_ip%
 
 format-disconnected =
 
-[module/date]
-type = internal/date
-interval = 5
+[module/temperature]
+type = internal/temperature
+thermal-zone = 0
+warn-temperature = 80
 
-date =
-date-alt = " %Y-%m-%d"
+format = <ramp> <label>
+format-underline = ${colors.foreground}
+format-warn = <ramp> <label-warn>
+format-warn-underline = ${colors.secondary}
 
-time = %H:%M
-time-alt = %H:%M:%S
+label = %temperature%
+label-warn = %temperature%
+label-warn-foreground = ${colors.alert}
 
-format-prefix = 
-format-prefix-foreground = ${colors.foreground}
-
-label = %date% %time%
-
-[module/volume]
-type = internal/volume
-
-format-volume = <ramp-volume> <bar-volume>
-label-volume = 
-label-volume-foreground = ${root.foreground}
-
-format-muted = <label-muted> <bar-volume>
-format-muted-foreground = ${colors.foreground}
-label-muted = 
-
-ramp-volume-0 = 
-ramp-volume-1 = 
-ramp-volume-2 = 
-
-bar-volume-width = 10
-bar-volume-foreground-0 = ${colors.foreground}
-bar-volume-foreground-1 = ${colors.foreground}
-bar-volume-foreground-2 = ${colors.primary}
-bar-volume-foreground-3 = ${colors.primary}
-bar-volume-foreground-4 = ${colors.secondary}
-bar-volume-foreground-5 = ${colors.secondary}
-bar-volume-foreground-6 = ${colors.alert}
-bar-volume-gradient = false
-bar-volume-indicator = 
-bar-volume-indicator-font = 5
-bar-volume-fill = ─
-bar-volume-fill-font = 2
-bar-volume-empty = ─
-bar-volume-empty-font = 2
-bar-volume-empty-foreground = ${colors.foreground-alt}
+ramp-0 = 
+ramp-1 = 
+ramp-2 = 
+ramp-foreground = ${colors.foreground}
 
 [module/battery]
 type = internal/battery
@@ -294,25 +262,53 @@ animation-charging-2 = 
 animation-charging-foreground = ${colors.foreground}
 animation-charging-framerate = 0
 
-[module/temperature]
-type = internal/temperature
-thermal-zone = 0
-warn-temperature = 80
+;; in case something blows up
+[module/escapehatch]
+type = custom/menu
 
-format = <ramp> <label>
-format-underline = ${colors.foreground}
-format-warn = <ramp> <label-warn>
-format-warn-underline = ${colors.secondary}
+expand-right = true
 
-label = %temperature%
-label-warn = %temperature%
-label-warn-foreground = ${colors.alert}
+format-spacing = 1
 
-ramp-0 = 
-ramp-1 = 
-ramp-2 = 
-ramp-foreground = ${colors.foreground}
+label-open = 
+label-open-foreground = ${colors.foreground}
+label-close = 
+label-close-foreground = ${colors.secondary}
+label-separator = |
+label-separator-foreground = ${colors.foreground-alt}
 
+menu-0-0 = apps
+menu-0-0-exec = menu-open-1
+menu-0-1 = power
+menu-0-1-exec = menu-open-2
+
+menu-1-0 = 
+menu-1-0-exec = ./launch_terminal.sh
+menu-1-1 = 
+menu-1-1-exec = ./launch_browser.sh
+
+menu-2-0 = 
+menu-2-0-exec = shutdown now
+menu-2-1 = 
+menu-2-1-exec = reboot
+menu-2-2 = 
+menu-2-2-exec = menu-open-0
+
+
+[module/date]
+type = internal/date
+interval = 5
+
+date =
+date-alt = " %Y-%m-%d"
+
+time = %H:%M
+time-alt = %H:%M:%S
+
+format-prefix = 
+format-prefix-foreground = ${colors.foreground}
+
+label = %date% %time%
 
 [settings]
 screenchange-reload = true
