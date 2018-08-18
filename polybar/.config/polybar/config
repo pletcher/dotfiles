@@ -47,7 +47,7 @@ font-2 = FontAwesome5Free:style=Solid:pixelsize=16;3
 font-3 = FontAwesome5Free:style=Regular:pixelsize=16;3
 font-4 = FontAwesome5Brands:style=Regular:pixelsize=16;3
 
-modules-left = xbacklight volume xkeyboard
+modules-left = backlight-acpi volume xkeyboard
 modules-center = bspwm
 modules-right = filesystem cpu memory wlan eth temperature battery date escapehatch
 
@@ -57,6 +57,29 @@ scroll-up = bspwm-desknext
 scroll-down = bspwm-deskprev
 
 cursor-click = pointer
+
+[module/xbacklight]
+type = internal/xbacklight
+
+format = <label> <bar>
+label = 
+output = eDP1
+
+bar-width = 10
+bar-indicator = 
+bar-indicator-foreground = #ff
+bar-indicator-font = 2
+bar-fill = ─
+bar-fill-font = 2
+bar-fill-foreground = #9f78e1
+bar-empty = ─
+bar-empty-font = 2
+bar-empty-foreground = ${colors.foreground-alt}
+
+[module/backlight-acpi]
+inherit = module/xbacklight
+type = internal/backlight
+card = intel_backlight
 
 ;in case something blows up
 [module/escapehatch]
@@ -92,10 +115,6 @@ menu-2-1 = 
 menu-2-1-exec = reboot
 menu-2-2 = 
 menu-2-2-exec = menu-open-0
-
-;; [module/xwindow]
-;; type = internal/xwindow
-;; label = %title:0:30:...%
 
 [module/xkeyboard]
 type = internal/xkeyboard
@@ -143,7 +162,6 @@ mount-0 = /home
 
 ;; icomoon bluetooth e920 
 
-;; icomoon hard-drive e974
 label-mounted =  %percentage_used%%
 label-unmounted = %mountpoint% not mounted
 label-unmounted-foreground = ${colors.foreground}
@@ -156,40 +174,13 @@ icon-prev = 
 icon-stop = 
 icon-play = 
 icon-pause = 
-;; icomoon fast-forward e95f
 icon-next = 
-;; 
-
 label-song-maxlen = 25
 label-song-ellipsis = true
-
-[module/xbacklight]
-type = internal/xbacklight
-
-format = <label> <bar>
-label = 
-output = eDP1
-
-bar-width = 10
-bar-indicator = 
-bar-indicator-foreground = #ff
-bar-indicator-font = 2
-bar-fill = ─
-bar-fill-font = 2
-bar-fill-foreground = #9f78e1
-bar-empty = ─
-bar-empty-font = 2
-bar-empty-foreground = ${colors.foreground-alt}
-
-[module/backlight-acpi]
-inherit = module/xbacklight
-type = internal/backlight
-card = intel_backlight
 
 [module/cpu]
 type = internal/cpu
 interval = 2
-;; icomoon CPU e94d
 format-prefix = " "
 format-prefix-foreground = ${colors.foreground}
 label = %percentage:2%%
@@ -197,9 +188,7 @@ label = %percentage:2%%
 [module/memory]
 type = internal/memory
 interval = 2
-;; icomoon activity e900
 format-prefix = " "
-;; " "
 format-prefix-foreground = ${colors.foreground}
 label = %percentage_used%%
 
@@ -249,13 +238,17 @@ label = %date% %time%
 [module/volume]
 type = internal/volume
 
-format-volume = <label-volume> <bar-volume>
+format-volume = <ramp-volume> <bar-volume>
 label-volume = 
 label-volume-foreground = ${root.foreground}
 
-format-muted-prefix = " "
+format-muted = <label-muted> <bar-volume>
 format-muted-foreground = ${colors.foreground}
-label-muted = 
+label-muted = 
+
+ramp-volume-0 = 
+ramp-volume-1 = 
+ramp-volume-2 = 
 
 bar-volume-width = 10
 bar-volume-foreground-0 = ${colors.foreground}
