@@ -1,0 +1,1 @@
+/home/pletcher/.config/fisherman/gnuykeaj/fish_prompt.fish
