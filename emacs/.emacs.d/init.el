@@ -457,8 +457,10 @@
      (list (line-beginning-position)
            (line-beginning-position 2)))))
 
+(load-file "~/.emacs.d/vendor/flow.el")
+
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
 
 (when (file-exists-p custom-file)
-(load custom-file))
+  (load custom-file))
 ;;; init.el ends here

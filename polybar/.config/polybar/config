@@ -132,22 +132,22 @@ label-indicator-underline = ${colors.secondary}
 [module/bspwm]
 type = internal/bspwm
 
-label-focused = 
+label-focused =  
 label-focused-font = 5
 label-focused-background = ${colors.background-transparent}
 label-focused-underline= ${colors.background-transparent}
 label-focused-padding = 2
 
 ;; icomoon circle e937
-label-occupied = 
+label-occupied = 
 label-occupied-font = 5
 label-occupied-padding = 2
 
-label-urgent = 
+label-urgent = 
 label-urgent-background = ${colors.alert}
 label-urgent-padding = 2
 
-label-empty =
+label-empty = 
 label-empty-foreground = ${colors.foreground}
 label-empty-padding = 2
 
