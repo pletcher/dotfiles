@@ -33,11 +33,11 @@ XF86AudioMute
 
 # Brightness goes up
 XF86MonBrightnessUp
-  xbacklight +10%
+  xbacklight +2%
 
 # Brightness goes down
 XF86MonBrightnessDown
-  xbacklight -10%
+  xbacklight -2%
 
 # Screen lock
 XF86ScreenSaver

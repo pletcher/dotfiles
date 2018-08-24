@@ -334,7 +334,11 @@
              (setq ruby-insert-encoding-magic-comment nil)
              (add-hook 'ruby-mode-hook #'subword-mode))
 
-(use-package rust-mode)
+(use-package flycheck-rust)
+
+(use-package rust-mode
+  :config
+  (add-hook 'rust-mode-hook #'flycheck-rust-setup))
 
 (use-package yaml-mode)
 
