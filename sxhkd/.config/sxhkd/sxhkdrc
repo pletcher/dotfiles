@@ -29,7 +29,7 @@ XF86AudioLowerVolume
 
 # Mutes
 XF86AudioMute
-  amixer -q set Master off
+  amixer -q set Master 0 off
 
 # Brightness goes up
 XF86MonBrightnessUp

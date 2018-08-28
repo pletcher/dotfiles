@@ -102,7 +102,9 @@
 (set-terminal-coding-system 'utf-8)
 (set-keyboard-coding-system 'utf-8)
 
-(set-frame-font "InputMonoNarrow light 9")
+(add-to-list 'default-frame-alist
+             '(font . "InputMonoNarrow light 10"))
+(set-frame-font "InputMonoNarrow light 10")
 
 (setq hippie-expand-try-functions-list '(try-expand-dabbrev
                                          try-expand-dabbrev-all-buffers
