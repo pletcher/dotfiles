@@ -43,14 +43,11 @@ module-margin-right = 2
 
 font-0 = Hack:pixelsize=16;2
 font-1 = icomoon:style=Regular:pixelsize=20;3
-font-2 = FontAwesome5Free:style=Solid:pixelsize=16;3
-font-3 = FontAwesome5Free:style=Regular:pixelsize=16;3
-font-4 = FontAwesome5Brands:style=Regular:pixelsize=16;3
 
 modules-left = backlight-acpi volume xkeyboard
 modules-center = bspwm
 modules-right = filesystem cpu memory wlan eth temperature battery date escapehatch
-
+# filesystem cpu memory wlan eth temperature battery
 wm-restack = bspwm
 
 scroll-up = bspwm-desknext
@@ -241,26 +238,28 @@ battery = BAT0
 adapter = AC
 full-at = 98
 
-format-charging = <animation-charging> <label-charging>
+format-charging-prefix = " "
+format-charging = <label-charging>
 format-charging-underline = ${colors.foreground}
 
-format-discharging = <ramp-capacity> <label-discharging>
+format-discharging-prefix = " "
+format-discharging = <label-discharging>
 format-discharging-underline = ${colors.secondary}
 
 format-full-prefix = " "
 format-full-prefix-foreground = ${colors.foreground}
 
-ramp-capacity-0 = 
-ramp-capacity-1 = 
-ramp-capacity-2 = 
-ramp-capacity-3 = 
-ramp-capacity-foreground = ${colors.foreground}
+# ramp-capacity-0 = 
+# ramp-capacity-1 = 
+# ramp-capacity-2 = 
+# ramp-capacity-3 = 
+# ramp-capacity-foreground = ${colors.foreground}
 
-animation-charging-0 = 
-animation-charging-1 = 
-animation-charging-2 = 
-animation-charging-foreground = ${colors.foreground}
-animation-charging-framerate = 0
+# animation-charging-0 = 
+# animation-charging-1 = 
+# animation-charging-2 = 
+# animation-charging-foreground = ${colors.foreground}
+# animation-charging-framerate = 0
 
 ;; in case something blows up
 [module/escapehatch]
