@@ -47,7 +47,7 @@ font-1 = icomoon:style=Regular:pixelsize=20;3
 modules-left = backlight-acpi volume xkeyboard
 modules-center = bspwm
 modules-right = filesystem cpu memory wlan eth temperature battery date escapehatch
-# filesystem cpu memory wlan eth temperature battery
+
 wm-restack = bspwm
 
 scroll-up = bspwm-desknext
@@ -87,7 +87,7 @@ label-volume-foreground = ${root.foreground}
 
 format-muted = <label-muted> <bar-volume>
 format-muted-foreground = ${colors.foreground}
-label-muted = 
+label-muted = 
 
 ramp-volume-0 = 
 ramp-volume-1 = 
