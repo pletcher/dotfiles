@@ -66,7 +66,7 @@ plugins=(
   zsh-completions
 )
 
-autoload -U compinit && compinit
+fpath=(/share/zsh/site-functions $fpath)
 
 source $ZSH/oh-my-zsh.sh
 
