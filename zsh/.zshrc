@@ -35,12 +35,8 @@ ZSH_THEME="common"
 # Uncomment the following line to enable command auto-correction.
 # ENABLE_CORRECTION="true"
 
-# Uncomment the following line to display red dots whilst waiting for completion.
 COMPLETION_WAITING_DOTS="true"
 
-# Uncomment the following line if you want to disable marking untracked files
-# under VCS as dirty. This makes repository status check for large repositories
-# much, much faster.
 DISABLE_UNTRACKED_FILES_DIRTY="true"
 
 # Uncomment the following line if you want to change the command execution time
@@ -75,14 +71,7 @@ source $ZSH/oh-my-zsh.sh
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # You may need to manually set your language environment
-# export LANG=en_US.UTF-8
-
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
+export LANG=en_US.UTF-8
 
 export EDITOR='nvim'
 
@@ -102,23 +91,3 @@ source_if_exists "$HOME/.profile"
 source_if_exists "$HOME/.zshenv"
 source_if_exists "$HOME/.fzf.zsh"
 source_if_exists "$HOME/.iterm2_shell_integration.zsh"
-
-# test -f $HOME/.profile && source $HOME/.profile
-
-# [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
-# test -f $HOME/.iterm2_shell_integration.zsh && source $HOME/.iterm2_shell_integration.zsh
-
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
-
-alias emd="emacs --daemon"
-alias emc="emacsclient -a '' -c &"
-alias emt="emacsclient -a '' -t &"
-alias zotero="$HOME/.local/lib/Zotero/zotero &"

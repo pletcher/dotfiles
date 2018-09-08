@@ -292,6 +292,8 @@
 
 ;; programming languages start here
 
+(add-hook 'programming-mode-hook #'electric-pair-mode)
+
 (use-package clojure-mode
   :config
   (add-hook 'clojure-mode-hook #'paredit-mode)
