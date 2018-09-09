@@ -91,3 +91,7 @@ source_if_exists "$HOME/.profile"
 source_if_exists "$HOME/.zshenv"
 source_if_exists "$HOME/.fzf.zsh"
 source_if_exists "$HOME/.iterm2_shell_integration.zsh"
+
+function emc() {
+	emacsclient -c -a '' $1
+}

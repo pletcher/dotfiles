@@ -148,6 +148,7 @@
 (sp-use-paredit-bindings)
 
 (show-smartparens-global-mode +1)
+(smartparens-global-mode 1)
 
 (eval-when-compile
   (unless (package-installed-p 'use-package)
@@ -265,8 +266,7 @@
 
 (use-package auto-indent-mode
   :config
-  (auto-indent-global-mode)
-  (setq auto-indent-indent-style 'conservative))
+  (auto-indent-global-mode))
 
 (use-package easy-kill
   :config
@@ -291,9 +291,6 @@
   (setq whitespace-style '(face tabs empty trailing lines-tail)))
 
 ;; programming languages start here
-
-(add-hook 'programming-mode-hook #'electric-pair-mode)
-
 (use-package clojure-mode
   :config
   (add-hook 'clojure-mode-hook #'paredit-mode)
