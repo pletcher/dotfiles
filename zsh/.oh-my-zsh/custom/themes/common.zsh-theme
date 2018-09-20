@@ -69,3 +69,4 @@ common_bg_jobs() {
   bg_status="%{$fg[yellow]%}%(1j.↓%j .)"
   echo -n $bg_status
 }
+

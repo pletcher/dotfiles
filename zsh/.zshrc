@@ -95,3 +95,5 @@ source_if_exists "$HOME/.iterm2_shell_integration.zsh"
 function emc() {
 	emacsclient -c -a '' $1
 }
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
