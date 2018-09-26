@@ -8,7 +8,7 @@ super + Return
 
 ## program launcher
 super + @space
-	rofi -show run
+	rofi -theme base16-nord -show run
 
 ## reload sxhkd config
 super + Escape
@@ -32,11 +32,11 @@ XF86AudioMute
 
 # Brightness goes up
 XF86MonBrightnessUp
-  xbacklight -inc 10
+  xbacklight -ctrl intel_backlight -inc 5
 
 # Brightness goes down
 XF86MonBrightnessDown
-  xbacklight -dec 10
+  xbacklight -ctrl intel_backlight -dec 5
 
 # Screen lock
 XF86ScreenSaver

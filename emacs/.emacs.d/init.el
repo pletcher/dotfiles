@@ -141,15 +141,6 @@
 ;; smart tab behavior - indent or complete
 (setq tab-always-indent 'complete)
 
-(require 'smartparens-config)
-(setq sp-base-key-bindings 'paredit)
-(setq sp-autoskip-closing-pair 'always)
-(setq sp-hybrid-kill-entire-symbol nil)
-(sp-use-paredit-bindings)
-
-(show-smartparens-global-mode +1)
-(smartparens-global-mode 1)
-
 (eval-when-compile
   (unless (package-installed-p 'use-package)
     (package-install 'use-package)))
@@ -196,6 +187,15 @@
   (add-hook 'lisp-interaction-mode-hook #'paredit-mode)
   (add-hook 'lisp-mode-hook #'paredit-mode)
   (add-hook 'eval-expression-minibuffer-setup-hook #'paredit-mode))
+
+(use-package smartparens
+	:config
+	(setq sp-base-key-bindings 'paredit)
+	(setq sp-autoskip-closing-pair 'always)
+	(setq sp-hybrid-kill-entire-symbol nil)
+	(sp-use-paredit-bindings)
+	(show-smartparens-global-mode +1)
+	(smartparens-global-mode 1))
 
 (use-package uniquify
   :ensure f
@@ -315,6 +315,9 @@
 
 (use-package markdown-mode)
 
+(use-package nim-mode
+  :hook nimsuggest-mode)
+
 (use-package org
   :mode ("\\.org\\'" . org-mode))
 
@@ -340,6 +343,17 @@
 (use-package rust-mode
   :config
   (add-hook 'rust-mode-hook #'flycheck-rust-setup))
+
+(use-package web-mode
+  :custom
+  (web-mode-code-indent-offset 2 "set code offset to 2 spaces")
+  (web-mode-css-indent-offset 2 "set css offset to 2 spaces")
+  (web-mode-markup-indent-offset 2 "set markup offset to 2 spaces")
+  :config
+  (add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
+  (add-to-list 'auto-mode-alist '("\\.html\\'" . web-mode))
+  (add-to-list 'auto-mode-alist '("\\.js[x]?\\'" . web-mode))
+  (setq web-mode-content-types-alist '(("jsx" . ".*\\.js[x]?\\'"))))
 
 (use-package yaml-mode)
 

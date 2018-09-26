@@ -1,7 +1,6 @@
 #! /usr/bin/env sh
 
 bspc monitor eDP-1 -d I II III IV
-bspc monitor DP2 -d V VI VII VIII
 
 bspc config border_width 1
 bspc config bottom_padding 20

@@ -96,4 +96,3 @@ function emc() {
 	emacsclient -c -a '' $1
 }
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
