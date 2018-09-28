@@ -313,6 +313,11 @@
   :config
   (add-hook 'elixir-mode #'subword-mode))
 
+(use-package js2-mode
+  :config
+  (add-to-list 'auto-mode-alist '("\\.js[x]?\\'" . js2-jsx-mode))
+  (add-to-list 'interpreter-mode-alist '("node" . js2-jsx-mode)))
+
 (use-package markdown-mode)
 
 (use-package nim-mode
@@ -352,8 +357,7 @@
   :config
   (add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
   (add-to-list 'auto-mode-alist '("\\.html\\'" . web-mode))
-  (add-to-list 'auto-mode-alist '("\\.js[x]?\\'" . web-mode))
-  (setq web-mode-content-types-alist '(("jsx" . ".*\\.js[x]?\\'"))))
+  (setq web-mode-content-types-alist '("jsx" . "\\.js[x]?\\'")))
 
 (use-package yaml-mode)
 

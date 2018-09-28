@@ -12,11 +12,14 @@
  '(nord-comment-brightness 10)
  '(package-selected-packages
    (quote
-    (nim-mode web-mode flycheck-rust diminish python-mode auto-indent-mode smartparens parinfer nord-theme editorconfig rust-mode atom-one-dark-theme olivetti olivetti-mode f volatile-highlights counsel swiper ace-window ivy undo-tree which-key diff-hl crux super-save flycheck imenu-anywhere hl-todo company yaml-mode inf-ruby pdf-tools markdown-mode elixir-mode cider clojure-mode auctex rainbow-mode rainbow-delimiters move-text exec-path-from-shell easy-kill anzu dired uniquify paredit expand-region pt projectile ag git-timemachine magit zenburn-theme use-package)))
+    (js2-mode nim-mode web-mode flycheck-rust diminish python-mode auto-indent-mode smartparens parinfer nord-theme editorconfig rust-mode atom-one-dark-theme olivetti olivetti-mode f volatile-highlights counsel swiper ace-window ivy undo-tree which-key diff-hl crux super-save flycheck imenu-anywhere hl-todo company yaml-mode inf-ruby pdf-tools markdown-mode elixir-mode cider clojure-mode auctex rainbow-mode rainbow-delimiters move-text exec-path-from-shell easy-kill anzu dired uniquify paredit expand-region pt projectile ag git-timemachine magit zenburn-theme use-package)))
  '(smartparens-global-mode t)
  '(sp-navigate-reindent-after-up
    (quote
-    ((interactive cider-repl-mode clojure-mode clojurec-mode clojurescript-mode clojurex-mode common-lisp-mode emacs-lisp-mode eshell-mode geiser-repl-mode gerbil-mode inf-clojure-mode inferior-emacs-lisp-mode inferior-lisp-mode inferior-scheme-mode lisp-interaction-mode lisp-mode monroe-mode racket-mode racket-repl-mode scheme-interaction-mode scheme-mode slime-repl-mode stumpwm-mode rust-mode)))))
+    ((interactive cider-repl-mode clojure-mode clojurec-mode clojurescript-mode clojurex-mode common-lisp-mode emacs-lisp-mode eshell-mode geiser-repl-mode gerbil-mode inf-clojure-mode inferior-emacs-lisp-mode inferior-lisp-mode inferior-scheme-mode lisp-interaction-mode lisp-mode monroe-mode racket-mode racket-repl-mode scheme-interaction-mode scheme-mode slime-repl-mode stumpwm-mode rust-mode))))
+ '(web-mode-code-indent-offset 2)
+ '(web-mode-css-indent-offset 2)
+ '(web-mode-markup-indent-offset 2))
  '(scroll-bar-mode nil)
  '(tooltip-mode nil)
 (custom-set-faces

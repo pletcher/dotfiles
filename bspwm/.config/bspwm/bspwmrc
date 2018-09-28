@@ -15,4 +15,6 @@ bspc config gapless_monocle false
 bspc config click_to_focus true
 bspc config swallow_first_click true
 
+bspc rule -a Emacs state=tiled
+
 $HOME/.config/polybar/launch.sh
