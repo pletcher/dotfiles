@@ -266,7 +266,8 @@
 
 (use-package auto-indent-mode
   :config
-  (auto-indent-global-mode))
+  (auto-indent-global-mode)
+  (setq auto-indent-start-org-indent nil))
 
 (use-package easy-kill
   :config
@@ -324,7 +325,27 @@
   :hook nimsuggest-mode)
 
 (use-package org
-  :mode ("\\.org\\'" . org-mode))
+  :mode ("\\.org\\'" . org-mode)
+  :hook visual-line-mode-hook
+  :config
+  (require 'ox-latex)
+  (add-to-list
+   'org-latex-classes
+   '("beamer"
+     "\\documentclass[11pt]{beamer}\n
+\\mode<{{{beamermode}}}>\n
+\\usetheme{{{{beamertheme}}}}\n
+\\usecolortheme{{{{beamercolortheme}}}}\n
+\\setbeameroption{show notes}
+\\usepackage[utf8]{inputenc}\n
+\\usepackage[T1]{fontenc}\n
+\\usepackage{color}
+\\usepackage{verbatim}"
+     ("\\section{%s}" . "\\section*{%s}")
+     ("\\begin{frame}[fragile]\\frametitle{%s}"
+      "\\end{frame}"
+      "\\begin{frame}[fragile]\\frametitle{%s}"
+      "\\end{frame}"))))
 
 (use-package olivetti
   :config
