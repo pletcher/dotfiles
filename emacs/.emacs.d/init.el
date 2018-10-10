@@ -316,8 +316,11 @@
 
 (use-package js2-mode
   :config
-  (add-to-list 'auto-mode-alist '("\\.js[x]?\\'" . js2-jsx-mode))
-  (add-to-list 'interpreter-mode-alist '("node" . js2-jsx-mode)))
+  (add-to-list 'interpreter-mode-alist '("node" . js2-mode)))
+
+(use-package rjsx-mode
+  :config
+  (add-to-list 'auto-mode-alist '("\\.js\\'" . rjsx-mode)))
 
 (use-package markdown-mode)
 

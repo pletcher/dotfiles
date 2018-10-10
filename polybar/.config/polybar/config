@@ -175,7 +175,7 @@ label-song-ellipsis = true
 [module/cpu]
 type = internal/cpu
 interval = 2
-format-prefix = " "
+format-prefix = ""
 format-prefix-foreground = ${colors.foreground}
 label = %percentage:2%%
 
@@ -237,29 +237,20 @@ type = internal/battery
 battery = BAT0
 adapter = AC
 full-at = 98
+time-format = %H:%M
 
+label-charging = %time%
 format-charging-prefix = " "
 format-charging = <label-charging>
 format-charging-underline = ${colors.foreground}
 
+label-discharging = %time% %consumption% W
 format-discharging-prefix = " "
 format-discharging = <label-discharging>
 format-discharging-underline = ${colors.secondary}
 
 format-full-prefix = " "
 format-full-prefix-foreground = ${colors.foreground}
-
-# ramp-capacity-0 = 
-# ramp-capacity-1 = 
-# ramp-capacity-2 = 
-# ramp-capacity-3 = 
-# ramp-capacity-foreground = ${colors.foreground}
-
-# animation-charging-0 = 
-# animation-charging-1 = 
-# animation-charging-2 = 
-# animation-charging-foreground = ${colors.foreground}
-# animation-charging-framerate = 0
 
 ;; in case something blows up
 [module/escapehatch]
