@@ -239,7 +239,7 @@ adapter = AC
 full-at = 98
 time-format = %H:%M
 
-label-charging = %time%
+label-charging = %consumption% W
 format-charging-prefix = " "
 format-charging = <label-charging>
 format-charging-underline = ${colors.foreground}

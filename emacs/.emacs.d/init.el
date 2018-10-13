@@ -153,9 +153,9 @@
 
 (use-package diminish)
 
-(use-package nord-theme
+(use-package color-theme-sanityinc-tomorrow
   :config
-  (load-theme 'nord t))
+  (load-theme 'sanityinc-tomorrow-eighties t))
 
 ;; highlight the current line
 (global-hl-line-mode +1)
