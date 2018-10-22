@@ -190,9 +190,6 @@
 
 (use-package smartparens
 	:config
-	(setq sp-base-key-bindings 'paredit)
-	(setq sp-autoskip-closing-pair 'always)
-	(setq sp-hybrid-kill-entire-symbol nil)
 	(sp-use-paredit-bindings)
 	(show-smartparens-global-mode +1)
 	(smartparens-global-mode 1))
@@ -379,6 +376,7 @@
   (web-mode-css-indent-offset 2 "set css offset to 2 spaces")
   (web-mode-markup-indent-offset 2 "set markup offset to 2 spaces")
   :config
+  (add-to-list 'auto-mode-alist '("\\.eex\\'" . web-mode))
   (add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
   (add-to-list 'auto-mode-alist '("\\.html\\'" . web-mode))
   (setq web-mode-content-types-alist '("jsx" . "\\.js[x]?\\'")))
