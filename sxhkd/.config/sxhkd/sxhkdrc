@@ -8,7 +8,7 @@ super + Return
 
 ## program launcher
 super + @space
-	rofi -theme base16-nord -show run
+	rofi -theme onedark -show run
 
 ## reload sxhkd config
 super + Escape
