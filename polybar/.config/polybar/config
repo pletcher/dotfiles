@@ -46,7 +46,8 @@ font-1 = icomoon:style=Regular:pixelsize=20;3
 
 modules-left = backlight-acpi volume xkeyboard
 modules-center = bspwm
-modules-right = filesystem cpu memory wlan eth temperature battery date escapehatch
+modules-right = wlan eth temperature battery date escapehatch
+# filesystem cpu memory wlan eth temperature battery date escapehatch
 
 wm-restack = bspwm
 
