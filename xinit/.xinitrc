@@ -2,6 +2,7 @@
 
 userresources=$HOME/.Xresources
 usermodmap=$HOME/.Xmodmap
+userprofile=$HOME/.xprofile
 sysresources=/etc/X11/xinit/.Xresources
 sysmodmap=/etc/X11/xinit/.Xmodmap
 
@@ -19,6 +20,10 @@ if [ -f "$userresources" ]; then
 	xrdb -merge "$userresources"
 fi
 
+if [ -f "$userprofile" ]; then
+	xrdb -merge "$userprofile"
+fi
+
 if [ -f "$usermodmap" ]; then
 	xmodmap "$usermodmap"
 fi
@@ -32,9 +37,9 @@ if [ -d /etc/X11/xinit/xinitrc.d ] ; then
  unset f
 fi
 
-xrandr --output eDP-1 --mode 2560x1440 --scale 1x1 --dpi 209
+export XDG_DATA_HOME = $HOME/.local/share
 
-feh --bg-fill $(find ~/.wallpapers -type f | shuf -n 1)
+xrandr --output eDP-1 --mode 2560x1440 --scale 1x1 --dpi 209
 
 compton -b
 
@@ -45,6 +50,5 @@ sxhkd &
 libinput-gestures-setup start
 dropbox &
 dunst &
-xrdb ~/.Xresources
 
 exec bspwm 

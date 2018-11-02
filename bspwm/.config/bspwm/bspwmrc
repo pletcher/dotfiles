@@ -1,5 +1,7 @@
 #! /usr/bin/env sh
 
+source ~/.fehbg
+
 bspc monitor eDP-1 -d I II III IV
 
 bspc config border_width 1
