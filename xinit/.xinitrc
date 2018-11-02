@@ -37,18 +37,6 @@ if [ -d /etc/X11/xinit/xinitrc.d ] ; then
  unset f
 fi
 
-export XDG_DATA_HOME = $HOME/.local/share
+. "$userprofile"
 
-xrandr --output eDP-1 --mode 2560x1440 --scale 1x1 --dpi 209
-
-compton -b
-
-setxkbmap -layout us,gr -variant ,polytonic -option grp:caps_toggle -option compose:ralt
-xsetroot -cursor_name left_ptr
-
-sxhkd &
-libinput-gestures-setup start
-dropbox &
-dunst &
-
-exec bspwm 
+exec bspwm
