@@ -2,6 +2,8 @@
 
 export XDG_DATA_HOME = $HOME/.local/share
 
+[[ -f ~/.Xresources ]] && xrdb -merge ~/.Xresources
+
 xrandr --output eDP-1 --mode 2560x1440 --scale 1x1 --dpi 209
 
 compton -b
@@ -13,3 +15,4 @@ sxhkd &
 libinput-gestures-setup start
 dropbox &
 dunst &
+light-locker --lock-on-suspend &
