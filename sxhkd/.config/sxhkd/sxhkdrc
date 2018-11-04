@@ -20,23 +20,23 @@ super + Escape
 
 # Raises volume (enable audio if muted)
 XF86AudioRaiseVolume
-  amixer -q set Master 5%+ on
+  volumeControl.sh up
 
 # Lowers volume (do not unmute)
 XF86AudioLowerVolume
-  amixer -q set Master 5%-
+  volumeControl.sh down
 
 # Mutes
 XF86AudioMute
-  amixer -q set Master 0 off
+  volumeControl.sh mute
 
 # Brightness goes up
 XF86MonBrightnessUp
-  xbacklight -ctrl intel_backlight -inc 5
+  brightnessControl.sh up
 
 # Brightness goes down
 XF86MonBrightnessDown
-  xbacklight -ctrl intel_backlight -dec 5
+  brightnessControl.sh down
 
 # Screen lock
 XF86ScreenSaver

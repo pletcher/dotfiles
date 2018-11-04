@@ -44,9 +44,9 @@ module-margin-right = 2
 font-0 = Hack:pixelsize=16;2
 font-1 = icomoon:style=Regular:pixelsize=20;3
 
-modules-left = backlight-acpi volume xkeyboard
-modules-center = bspwm
-modules-right = wlan eth temperature battery date escapehatch
+modules-left = bspwm
+modules-center = 
+modules-right = wlan eth temperature battery xkeyboard date escapehatch
 # filesystem cpu memory wlan eth temperature battery date escapehatch
 
 wm-restack = bspwm
