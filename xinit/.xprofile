@@ -8,7 +8,7 @@ xrandr --output eDP-1 --mode 2560x1440 --scale 1x1 --dpi 209
 
 compton -b
 
-setxkbmap -layout us,gr -variant ,polytonic -option grp:caps_toggle -option compose:ralt
+setxkbmap -layout us,gr -variant ,polytonic -option grp:caps_toggle -option compose:ralt -option compose:slck
 xsetroot -cursor_name left_ptr
 
 sxhkd &
