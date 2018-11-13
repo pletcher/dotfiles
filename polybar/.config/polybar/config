@@ -8,7 +8,7 @@
 ;=====================================================
 
 [colors]
-background = #502e3440
+background = #20d8dee9
 background-alt = #502e3440
 background-transparent = #00383c4a
 foreground = #d8dee9
@@ -116,15 +116,15 @@ blacklist-0 = num lock
 
 format-prefix = " "
 format-prefix-foreground = ${colors.foreground}
-format-prefix-underline = ${colors.foreground-alt}
+;; format-prefix-underline = ${colors.foreground-alt}
 
 label-layout = %layout%
-label-layout-underline = ${colors.foreground-alt}
+;; label-layout-underline = ${colors.foreground-alt}
 
 label-indicator-padding = 2
 label-indicator-margin = 1
 label-indicator-background = ${colors.secondary}
-label-indicator-underline = ${colors.secondary}
+;; label-indicator-underline = ${colors.secondary}
 
 [module/bspwm]
 type = internal/bspwm
@@ -132,7 +132,7 @@ type = internal/bspwm
 label-focused =  
 label-focused-font = 5
 label-focused-background = ${colors.background}
-label-focused-underline= ${colors.background}
+;; label-focused-underline= ${colors.background}
 label-focused-padding = 2
 
 ;; icomoon circle e937
@@ -219,9 +219,9 @@ thermal-zone = 0
 warn-temperature = 80
 
 format = <ramp> <label>
-format-underline = ${colors.foreground}
+;; format-underline = ${colors.foreground}
 format-warn = <ramp> <label-warn>
-format-warn-underline = ${colors.secondary}
+;; format-warn-underline = ${colors.secondary}
 
 label = %temperature-c%
 label-warn = %temperature-c%
@@ -242,12 +242,12 @@ time-format = %H:%M
 label-charging = %consumption% W
 format-charging-prefix = " "
 format-charging = <label-charging>
-format-charging-underline = ${colors.foreground}
+;; format-charging-underline = ${colors.foreground}
 
 label-discharging = %time% %consumption% W
 format-discharging-prefix = " "
 format-discharging = <label-discharging>
-format-discharging-underline = ${colors.secondary}
+;; format-discharging-underline = ${colors.secondary}
 
 format-full-prefix = " "
 format-full-prefix-foreground = ${colors.foreground}
@@ -256,33 +256,21 @@ format-full-prefix-foreground = ${colors.foreground}
 [module/escapehatch]
 type = custom/menu
 
-expand-right = true
+expand-right = false
 
-format-spacing = 1
+format-spacing = 0
 
 label-open = 
 label-open-foreground = ${colors.foreground}
 label-close = 
 label-close-foreground = ${colors.secondary}
-label-separator = |
+label-separator = " | "
 label-separator-foreground = ${colors.foreground-alt}
 
-menu-0-0 = apps
-menu-0-0-exec = menu-open-1
-menu-0-1 = power
-menu-0-1-exec = menu-open-2
-
-menu-1-0 = 
-menu-1-0-exec = ./launch_terminal.sh
-menu-1-1 = 
-menu-1-1-exec = ./launch_browser.sh
-
-menu-2-0 = 
-menu-2-0-exec = shutdown now
-menu-2-1 = 
-menu-2-1-exec = reboot
-menu-2-2 = 
-menu-2-2-exec = menu-open-0
+menu-0-0 = 
+menu-0-0-exec = shutdown now
+menu-0-1 = 
+menu-0-1-exec = reboot
 
 
 [module/date]
@@ -304,7 +292,7 @@ label = %date% %time%
 screenchange-reload = true
 
 [global/wm]
-margin-top = 5
-margin-bottom = 5
+margin-top = 2
+margin-bottom = 2
 
 ; vim:ft=dosini
