@@ -15,4 +15,3 @@ libinput-gestures-setup start
 dropbox &
 dunst &
 light-locker --lock-on-suspend &
-$HOME/.config/polybar/launch.sh
