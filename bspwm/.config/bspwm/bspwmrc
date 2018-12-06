@@ -27,6 +27,4 @@ bspc rule -a Emacs state=tiled
 bspc rule -a Zathura state=tiled
 bspc rule -a Zotero desktop=^4
 
-$HOME/.config/polybar/launch.sh
-
 sxhkd &
