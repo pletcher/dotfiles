@@ -292,16 +292,14 @@
 (use-package clojure-mode
   :config
   (add-hook 'clojure-mode-hook #'paredit-mode)
-  (add-hook 'clojure-mode-hook #'subword-mode)
-  (add-hook 'clojure-mode-hook #'rainbow-delimiters-mode))
+  (add-hook 'clojure-mode-hook #'subword-mode))
 
 (use-package cider
   :config
   (setq nrepl-log-messages t)
   (add-hook 'cider-mode-hook #'eldoc-mode)
   (add-hook 'cider-repl-mode-hook #'eldoc-mode)
-  (add-hook 'cider-repl-mode-hook #'paredit-mode)
-  (add-hook 'cider-repl-mode-hook #'rainbow-delimiters-mode))
+  (add-hook 'cider-repl-mode-hook #'paredit-mode))
 
 (use-package editorconfig
   :config
@@ -311,13 +309,15 @@
   :config
   (add-hook 'elixir-mode #'subword-mode))
 
+(use-package flycheck-rust)
+
+(use-package inf-ruby
+  :config
+  (add-hook 'ruby-mode-hook #'inf-ruby-minor-mode))
+
 (use-package js2-mode
   :config
   (add-to-list 'interpreter-mode-alist '("node" . js2-mode)))
-
-(use-package rjsx-mode
-  :config
-  (add-to-list 'auto-mode-alist '("\\.js\\'" . rjsx-mode)))
 
 (use-package markdown-mode)
 
@@ -355,16 +355,18 @@
 
 (use-package python-mode)
 
-(use-package inf-ruby
-             :config
-             (add-hook 'ruby-mode-hook #'inf-ruby-minor-mode))
+(use-package rainbow-delimiters
+  :config
+  (add-hook 'prog-mode-hook #'rainbow-delimiters-mode))
+
+(use-package rjsx-mode
+  :config
+  (add-to-list 'auto-mode-alist '("\\.js\\'" . rjsx-mode)))
 
 (use-package ruby-mode
              :config
              (setq ruby-insert-encoding-magic-comment nil)
              (add-hook 'ruby-mode-hook #'subword-mode))
-
-(use-package flycheck-rust)
 
 (use-package rust-mode
   :config
