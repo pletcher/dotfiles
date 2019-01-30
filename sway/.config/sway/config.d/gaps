@@ -1,0 +1,3 @@
+set $default_gaps_inner 10
+
+gaps inner $default_gaps_inner
