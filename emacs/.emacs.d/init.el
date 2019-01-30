@@ -89,6 +89,8 @@
 
 (global-hl-line-mode +1)
 
+(menu-bar-mode -1)
+
 (eval-when-compile
 	(unless (package-installed-p 'use-package)
 		(package-install 'use-package)))
