@@ -56,6 +56,7 @@
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 2)
 (setq-default indent-line-function 'insert-tab)
+(setq-default cursor-type 'bar)
 
 (setq require-final-newline t)
 
@@ -106,6 +107,10 @@
   (setq nord-comment-brightness 15)
   (setq nord-region-highlight "snowstorm"))
 
+(use-package company
+  :config
+  (add-hook 'after-init-hook 'global-company-mode))
+
 (use-package counsel
   :config
   (global-set-key (kbd "M-x") 'counsel-M-x))
@@ -150,9 +155,11 @@
 
 (use-package smartparens
   :config
+  (require 'smartparens-config)
   (sp-use-paredit-bindings)
   (show-smartparens-global-mode +1)
-  (smartparens-global-mode 1))
+  (smartparens-global-mode 1)
+  (sp-pair "{" nil :post-handlers '(("||\n[i]" "RET"))))
 
 (use-package swiper
   :config
@@ -230,15 +237,13 @@
   (add-to-list 'auto-mode-alist '("\\.html\\'" . web-mode))
   (setq web-mode-content-types-alist '("jsx" . "\\.js[x]?\\'")))
 
-(use-package yaml-mode)
+(use-package writegood-mode
+  :config
+  (global-set-key "\C-cg" 'writegood-mode)
+  (global-set-key "\C-c\C-gg" 'writegood-grade-level)
+  (global-set-key "\C-c\C-ge" 'writegood-reading-ease))
 
-(require 'rect)
-(defadvice kill-region (before smart-cut activate compile)
-  "When called interactively with no active region, kill a single line instead."
-  (interactive
-   (if mark-active (list (region-beginning) (region-end) (rectangle-mark-mode)
-                         (list (line-beginning-position)
-                               (line-beginning-position 2))))))
+(use-package yaml-mode)
 
 ;;; init.el ends here
 (custom-set-variables
@@ -251,7 +256,7 @@
     ("bf390ecb203806cbe351b966a88fc3036f3ff68cd2547db6ee3676e87327b311" default)))
  '(package-selected-packages
    (quote
-    (yaml-mode diff-hl web-mode rjsx-mode olivetti nim-mode cider clojure-mode smartparens paredit projectile counsel magit nord-theme use-package)))
+    (writegood-mode company yaml-mode diff-hl web-mode rjsx-mode olivetti nim-mode cider clojure-mode smartparens paredit projectile counsel magit nord-theme use-package)))
  '(web-mode-code-indent-offset 2)
  '(web-mode-css-indent-offset 2)
  '(web-mode-markup-indent-offset 2))
