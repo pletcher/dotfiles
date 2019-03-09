@@ -1,4 +1,4 @@
-;;; Init.el --- emacs config
+;;; init.el --- emacs config
 ;;
 ;; Copyright (c) 2019 Charles Pletcher
 ;; borrowing liberally from https://github.com/bbatsov/emacs.d
@@ -6,7 +6,7 @@
 ;; Author: Charles Pletcher <pletcher@protonmail.com>
 ;; URL: https://github.com/pletcher/emacs.d
 
-;;; Commentary
+;;; Commentary:
 ;;
 ;; I have no idea what I'm doing.
 
@@ -120,7 +120,8 @@
   :config
   (put 'dired-find-alternate-file 'disabled nil)
   (setq dired-recursive-deletes 'always)
-  (setq dired-recursive-copies 'always))
+  (setq dired-recursive-copies 'always)
+  (setq dired-listing-switches "-lXGgh"))
 
 (use-package easy-kill
   :config
@@ -196,6 +197,9 @@
   :config
   (add-hook 'elixir-mode #'subword-mode))
 
+(use-package flycheck
+  :init (global-flycheck-mode))
+
 (use-package graphql-mode)
 
 (use-package js2-mode
@@ -203,6 +207,12 @@
   (add-to-list 'interpreter-mode-alist '("node" . js2-mode)))
 
 (use-package json-mode)
+
+(use-package markdown-mode
+  :commands (markdown-mode gfm-mode)
+  :mode (("README\\.md\\'" . gfm-mode)
+         ("\\.md\\'" . markdown-mode)
+         ("\\.markdown\\'" . markdown-mode)))
 
 (use-package nim-mode
   :hook nimsuggest-mode)
@@ -225,6 +235,16 @@
   :config
   (setq ruby-insert-encoding-magic-comment nil)
   (add-hook 'ruby-mode-hook #'subword-mode))
+
+(use-package typescript-mode
+  :config
+  (add-to-list 'auto-mode-alist '("\\.ts[x]?\\'" . typescript-mode)))
+
+(use-package tide
+  :after (typescript-mode company flycheck)
+  :hook ((typescript-mode . tide-setup)
+         (typescript-mode . tide-hl-identifier-mode)
+         (before-save . tide-format-before-save)))
 
 (use-package web-mode
   :custom
@@ -254,9 +274,10 @@
  '(custom-safe-themes
    (quote
     ("bf390ecb203806cbe351b966a88fc3036f3ff68cd2547db6ee3676e87327b311" default)))
+ '(js-indent-level 2)
  '(package-selected-packages
    (quote
-    (writegood-mode company yaml-mode diff-hl web-mode rjsx-mode olivetti nim-mode cider clojure-mode smartparens paredit projectile counsel magit nord-theme use-package)))
+    (markdown-mode rainbow-delimiters json-mode graphql-mode elixir-mode editorconfig easy-kill f tide writegood-mode company yaml-mode diff-hl web-mode rjsx-mode olivetti nim-mode cider clojure-mode smartparens paredit projectile counsel magit nord-theme use-package)))
  '(web-mode-code-indent-offset 2)
  '(web-mode-css-indent-offset 2)
  '(web-mode-markup-indent-offset 2))

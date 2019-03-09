@@ -6,7 +6,7 @@ GO_BIN=/usr/local/go/bin
 JVM_BIN=/usr/lib/jvm/default/bin
 LOCAL_BIN=$HOME/.local/bin
 NIMBLE=$HOME/.nimble/bin
-NODE_MODULES=$HOME/.config/yarn/global/node_modules/.bin
+YARN_MODULES=$HOME/.config/yarn/global/node_modules/.bin
 PYENV=$HOME/.pyenv/shims
 RBENV_BIN=$HOME/.rbenv/bin
 RBENV_SHIMS=$HOME/.rbenv/shims
@@ -30,7 +30,7 @@ path=(
 	$NIMBLE
 	$N
 	$YARN
-	$NODE_MODULES
+	$YARN_MODULES
 	$PYENV
 	$LOCAL_BIN
 	$USR_LOCAL_BIN

@@ -1,0 +1,87 @@
+/* :root {
+	--nord0: #2E3440;
+    --nord1: #3B4252;
+    --nord2: #434C5E;
+    --nord3: #4C566A;
+    --nord4: #D8DEE9;
+    --nord5: #E5E9F0;
+    --nord6: #ECEFF4;
+    --nord7: #8FBCBB;
+    --nord8: #88C0D0;
+    --nord9: #81A1C1;
+    --nord10: #5E81AC;
+    --nord11: #BF616A;
+    --nord12: #D08770;
+    --nord13: #EBCB8B;
+    --nord14: #A3BE8C;
+    --nord15: #B48EAD;
+} */
+
+* {
+    border: none;
+    border-radius: 0;
+    font-family: "Input Sans", Icomoon, Roboto, Helvetica, Arial, sans-serif;
+    font-size: 18px;
+    min-height: 0;
+}
+
+window#waybar {
+    background: rgba(46, 52, 64, 0.5);
+    /* border-bottom: 3px solid rgba(100, 114, 125, 0.5); */
+    color: #D8DEE9;
+}
+
+#workspaces button {
+    padding: 0 5px;
+    background: transparent;
+    color: #D8DEE9;
+    border-bottom: 3px solid transparent;
+}
+
+#workspaces button.focused {
+    background: #4C566A;
+    border-bottom: 3px solid #D8DEE9;
+}
+
+#mode, #clock, #battery,
+#pulseaudio, #cpu, #memory, 
+#network {
+    padding: 0 10px;
+    margin: 0;
+}
+
+#mode {
+    background: #4C566A;
+    border-bottom: 3px solid #D8DEE9;
+}
+
+#clock {
+    background-color: #4C566A;
+}
+
+#battery {
+    background-color: #D8DEE9;
+    color: #2E3440;
+}
+
+#battery.charging {
+    color: #D8DEE9;
+    background-color: #A3BE8C;
+}
+
+@keyframes blink {
+    to {
+        background-color: #D8DEE9;
+        color: #2E3440;
+    }
+}
+
+#battery.warning:not(.charging) {
+    background: #BF616A;
+    color: #D8DEE9;
+    animation-name: blink;
+    animation-duration: 0.5s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
