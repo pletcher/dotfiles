@@ -101,11 +101,13 @@
 (setq use-package-always-ensure t)
 (setq use-package-verbose t)
 
-(use-package nord-theme
-  :config
-  (load-theme 'nord t)
-  (setq nord-comment-brightness 15)
-  (setq nord-region-highlight "snowstorm"))
+;; (use-package nord-theme
+;;   :config
+;;   (load-theme 'nord t)
+;;   (setq nord-comment-brightness 15)
+;;   (setq nord-region-highlight "snowstorm"))
+
+(use-package xresources-theme)
 
 (use-package company
   :config
@@ -121,7 +123,7 @@
   (put 'dired-find-alternate-file 'disabled nil)
   (setq dired-recursive-deletes 'always)
   (setq dired-recursive-copies 'always)
-  (setq dired-listing-switches "-lXGgh"))
+  (setq dired-listing-switches "-algh"))
 
 (use-package easy-kill
   :config
@@ -169,7 +171,7 @@
 (use-package whitespace
   :config
   (setq whitespace-line-column 100)
-  (setq whitespace-style '(face tabs empty trailing lines-tail))
+  (setq whitespace-style '(face empty trailing lines-tail))
   (add-hook 'prog-mode-hook #'whitespace-mode)
   (add-hook 'before-save-hook #'whitespace-cleanup))
 
@@ -202,10 +204,6 @@
 
 (use-package graphql-mode)
 
-(use-package js2-mode
-  :config
-  (add-to-list 'interpreter-mode-alist '("node" . js2-mode)))
-
 (use-package json-mode)
 
 (use-package markdown-mode
@@ -227,10 +225,6 @@
   :config
   (add-hook 'prog-mode-hook #'rainbow-delimiters-mode))
 
-(use-package rjsx-mode
-  :config
-  (add-to-list 'auto-mode-alist '("\\.js\\'" . rjsx-mode)))
-
 (use-package ruby-mode
   :config
   (setq ruby-insert-encoding-magic-comment nil)
@@ -247,15 +241,21 @@
          (before-save . tide-format-before-save)))
 
 (use-package web-mode
-  :custom
-  (web-mode-code-indent-offset 2 "set code offset to 2 spaces")
-  (web-mode-css-indent-offset 2 "set css offset to 2 spaces")
-  (web-mode-markup-indent-offset 2 "set markup offset to 2 spaces")
   :config
   (add-to-list 'auto-mode-alist '("\\.eex\\'" . web-mode))
   (add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
   (add-to-list 'auto-mode-alist '("\\.html\\'" . web-mode))
-  (setq web-mode-content-types-alist '("jsx" . "\\.js[x]?\\'")))
+  (add-to-list 'auto-mode-alist '("\\.js\\'" . web-mode))
+  (add-to-list 'auto-mode-alist '("\\.jsx$" . web-mode))
+  (add-to-list 'web-mode-indentation-params '("lineup-args" . nil))
+  (add-to-list 'web-mode-indentation-params '("lineup-concats" . nil))
+  (add-to-list 'web-mode-indentation-params '("lineup-calls" . nil))
+  (setq web-mode-content-types-alist '(("jsx" . "\\.js[x]?\\'")))
+  (setq web-mode-attr-indent-offset 2)
+  (setq web-mode-attr-value-indent-offset 2)
+  (setq web-mode-code-indent-offset 2)
+  (setq web-mode-css-indent-offset 2)
+  (setq web-mode-markup-indent-offset 2))
 
 (use-package writegood-mode
   :config
@@ -277,10 +277,8 @@
  '(js-indent-level 2)
  '(package-selected-packages
    (quote
-    (markdown-mode rainbow-delimiters json-mode graphql-mode elixir-mode editorconfig easy-kill f tide writegood-mode company yaml-mode diff-hl web-mode rjsx-mode olivetti nim-mode cider clojure-mode smartparens paredit projectile counsel magit nord-theme use-package)))
- '(web-mode-code-indent-offset 2)
- '(web-mode-css-indent-offset 2)
- '(web-mode-markup-indent-offset 2))
+    (xresources-theme markdown-mode rainbow-delimiters json-mode graphql-mode elixir-mode editorconfig easy-kill f tide writegood-mode company yaml-mode diff-hl web-mode olivetti nim-mode cider clojure-mode smartparens paredit projectile counsel magit nord-theme use-package)))
+ )
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

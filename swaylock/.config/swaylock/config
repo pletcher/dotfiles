@@ -1,0 +1,13 @@
+bs-hl-color=$color3
+color=$color0
+indicator-caps-lock
+inside-clear-color=$color10
+inside-color=$color2
+inside-ver-color=$color4
+inside-wrong-color=$color9
+key-hl-color=$color14
+ring-clear-color=$color14
+ring-color=$color6
+ring-ver-color=$color12
+ring-wrong-color=$color9
+text-color=$foreground

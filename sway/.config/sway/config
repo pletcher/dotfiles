@@ -5,7 +5,6 @@
 # Read `man 5 sway` for a complete reference.
 
 exec --no-startup-id xrdb ~/.Xresources
-exec --no-startup-id wal -i ~/.wallpapers
 
 ### Variables
 #
@@ -52,10 +51,10 @@ include ./config.d/gaps
 # resumed. It will also lock your screen before your computer goes to sleep.
 
 exec swayidle \
-     timeout 600 'swaylock -c 2E3440' \
+     timeout 600 swaylock \
 	   timeout 660 'swaymsg "output * dpms off"' \
      resume 'swaymsg "output * dpms on"' \
-     before-sleep 'swaylock -c 2E3440'
+     before-sleep swaylock
 
 ### Input configuration
 #
@@ -230,8 +229,8 @@ bindsym XF86AudioRaiseVolume exec amixer -q set Master 5%+
 bindsym XF86AudioLowerVolume exec amixer -q set Master 5%-
 
 ### Brightness 
-bindsym XF86MonBrightnessUp exec light -A 5
-bindsym XF86MonBrightnessDown exec light -U 5
+bindsym XF86MonBrightnessUp exec "light -A 5"
+bindsym XF86MonBrightnessDown exec "light -U 5"
 
 exec --no-startup-id waybar
 exec --no-startup-id libinput-gestures-setup start
