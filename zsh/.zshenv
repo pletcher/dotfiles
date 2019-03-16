@@ -39,7 +39,7 @@ path=(
 	/usr/lib/jvm/default/bin
 	/usr/bin/site_perl
 	/usr/bin/vendor_perl
-	/usr/bin/cor_perl
+	/usr/bin/core_perl
 	/var/lib/snapd/snap/bin
 	$SBIN
 	$path[@]
