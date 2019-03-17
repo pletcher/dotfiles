@@ -45,7 +45,7 @@
 
 (setq scroll-margin 0
 			scroll-conservatively 10000
-			scroll-preserver-screen-position 1)
+			scroll-preserve-screen-position 1)
 
 (line-number-mode t)
 (column-number-mode t)
@@ -106,7 +106,6 @@
 ;;   (load-theme 'nord t)
 ;;   (setq nord-comment-brightness 15)
 ;;   (setq nord-region-highlight "snowstorm"))
-
 (use-package xresources-theme)
 
 (use-package company
@@ -199,6 +198,11 @@
   :config
   (add-hook 'elixir-mode #'subword-mode))
 
+(use-package emmet-mode
+  :config
+  (setq emmet-expand-jsx-className? t)
+  (setq emmet-self-closing-tag-style " /"))
+
 (use-package flycheck
   :init (global-flycheck-mode))
 
@@ -221,6 +225,17 @@
   :mode ("\\.org\\'" . org-mode)
   :hook visual-line-mode-hook)
 
+(use-package org-ref
+  :config
+  (setq reftex-default-bibliography '("~/Dropbox/bibliography/references.bib"))
+  (setq org-ref-bibliography-notes "~/Dropbox/bibliography/notes.org")
+  (setq org-ref-default-bibliography '("~/Dropbox/bibliography/references.bib"))
+  (setq org-ref-default-citation-link "autocite")
+  (setq org-ref-insert-cite-key "C-c c")
+  (setq org-ref-pdf-directory "~/Dropbox/bibliography/bibtex-pdfs")
+  (setq bibtex-completion-bibliography "~/Dropbox/bibliography/references.bib")
+  (require 'org-ref))
+
 (use-package rainbow-delimiters
   :config
   (add-hook 'prog-mode-hook #'rainbow-delimiters-mode))
@@ -229,6 +244,10 @@
   :config
   (setq ruby-insert-encoding-magic-comment nil)
   (add-hook 'ruby-mode-hook #'subword-mode))
+
+(use-package slime
+  :config
+  (setq inferior-lisp-program "sbcl"))
 
 (use-package typescript-mode
   :config
@@ -277,8 +296,7 @@
  '(js-indent-level 2)
  '(package-selected-packages
    (quote
-    (xresources-theme markdown-mode rainbow-delimiters json-mode graphql-mode elixir-mode editorconfig easy-kill f tide writegood-mode company yaml-mode diff-hl web-mode olivetti nim-mode cider clojure-mode smartparens paredit projectile counsel magit nord-theme use-package)))
- )
+    (org-ref emmet-mode slime xresources-theme markdown-mode rainbow-delimiters json-mode graphql-mode elixir-mode editorconfig easy-kill f tide writegood-mode company yaml-mode diff-hl web-mode olivetti nim-mode cider clojure-mode smartparens paredit projectile counsel magit nord-theme use-package))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

@@ -98,3 +98,5 @@ if [ -f '/home/pletcher/google-cloud-sdk/path.zsh.inc' ]; then . '/home/pletcher
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/home/pletcher/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/pletcher/google-cloud-sdk/completion.zsh.inc'; fi
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
