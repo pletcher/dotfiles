@@ -178,6 +178,17 @@
 ;; programming language modes start here
 ;;;
 
+(use-package tex-site
+  :ensure auctex
+  :mode ("\\.tex\\'" . TeX-latex-mode)
+  :init
+  (setq reftex-plug-into-AUCTeX t)
+  (setq LaTeX-reftex-cite-format-auto-activate t)
+  (setq-default TeX-engine 'xetex)
+  :config
+  (add-hook 'LaTeX-mode-hook 'reftex-mode)
+  (setq reftex-cite-format 'biblatex))
+
 (use-package clojure-mode
   :config
   (add-hook 'clojure-mode-hook #'paredit-mode)
@@ -296,7 +307,7 @@
  '(js-indent-level 2)
  '(package-selected-packages
    (quote
-    (org-ref emmet-mode slime xresources-theme markdown-mode rainbow-delimiters json-mode graphql-mode elixir-mode editorconfig easy-kill f tide writegood-mode company yaml-mode diff-hl web-mode olivetti nim-mode cider clojure-mode smartparens paredit projectile counsel magit nord-theme use-package))))
+    (tex-site auctex org-ref emmet-mode slime xresources-theme markdown-mode rainbow-delimiters json-mode graphql-mode elixir-mode editorconfig easy-kill f tide writegood-mode company yaml-mode diff-hl web-mode olivetti nim-mode cider clojure-mode smartparens paredit projectile counsel magit nord-theme use-package))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
