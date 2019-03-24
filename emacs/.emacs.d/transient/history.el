@@ -1,5 +1,7 @@
 ((magit-commit nil
                ("--no-verify"))
- (magit-pull nil)
+ (magit-pull
+  ("--rebase")
+  nil)
  (magit-push nil)
  (magit-tag nil))

@@ -15,6 +15,6 @@ set $nord13 #EBCB8B
 set $nord14 #A3BE8C
 set $nord15 #B48EAD
 
-client.focused $color3 $color3 $color6 $color8 $color3
-client.unfocused $color1 $color1 $color4 $color8 $color1
-client.urgent $color11 $color1 $color4 $color8 $color11
+client.focused $color3 $color3 $foreground $color8 $color3
+client.unfocused $color1 $color1 $foreground $color8 $color1
+client.urgent $color11 $color1 $foreground $color8 $color11

@@ -19,7 +19,7 @@ set $right l
 set $term kitty
 # Your preferred application launcher
 # Note: it's recommended that you pass the final command to sway
-set $menu rofi -show run | xargs swaymsg exec
+set $menu rofi -combi-modi run#drun -show combi -modi combi#window#ssh | xargs swaymsg exec
 
 include "$HOME/.cache/wal/colors-sway"
 

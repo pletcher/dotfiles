@@ -48,7 +48,7 @@ window#waybar {
 }
 
 #battery.charging {
-    color: @color4;
+    color: @color0;
     background-color: @color14;
 }
 

@@ -106,7 +106,22 @@
 ;;   (load-theme 'nord t)
 ;;   (setq nord-comment-brightness 15)
 ;;   (setq nord-region-highlight "snowstorm"))
-(use-package xresources-theme)
+
+(use-package xresources-theme
+  :config
+  (let ((line (face-attribute 'mode-line :underline)))
+    (set-face-attribute 'mode-line          nil :overline   line)
+    (set-face-attribute 'mode-line-inactive nil :overline   line)
+    (set-face-attribute 'mode-line-inactive nil :underline  line)
+    (set-face-attribute 'mode-line          nil :box        nil)
+    (set-face-attribute 'mode-line-inactive nil :box        nil)
+    (set-face-attribute 'mode-line-inactive nil :background nil)))
+
+(use-package moody
+  :config
+  (setq x-underline-at-descent-line t)
+  (moody-replace-mode-line-buffer-identification)
+  (moody-replace-vc-mode))
 
 (use-package company
   :config
@@ -178,17 +193,6 @@
 ;; programming language modes start here
 ;;;
 
-(use-package tex-site
-  :ensure auctex
-  :mode ("\\.tex\\'" . TeX-latex-mode)
-  :init
-  (setq reftex-plug-into-AUCTeX t)
-  (setq LaTeX-reftex-cite-format-auto-activate t)
-  (setq-default TeX-engine 'xetex)
-  :config
-  (add-hook 'LaTeX-mode-hook 'reftex-mode)
-  (setq reftex-cite-format 'biblatex))
-
 (use-package clojure-mode
   :config
   (add-hook 'clojure-mode-hook #'paredit-mode)
@@ -216,6 +220,17 @@
 
 (use-package flycheck
   :init (global-flycheck-mode))
+
+(use-package flycheck-inline
+  :requires flycheck
+  :config
+  (add-hook 'flycheck-mode-hook #'flycheck-inline-mode))
+
+(use-package flycheck-rust
+  :requires flycheck
+  :config
+  (with-eval-after-load 'rust-mode
+    (add-hook 'flycheck-mode-hook #'flycheck-rust-setup)))
 
 (use-package graphql-mode)
 
@@ -252,13 +267,29 @@
   (add-hook 'prog-mode-hook #'rainbow-delimiters-mode))
 
 (use-package ruby-mode
-  :config
+  :init
   (setq ruby-insert-encoding-magic-comment nil)
+  :config
   (add-hook 'ruby-mode-hook #'subword-mode))
+
+(use-package rust-mode
+  :init
+  (setq rust-format-on-save t))
 
 (use-package slime
   :config
   (setq inferior-lisp-program "sbcl"))
+
+(use-package tex-site
+  :ensure auctex
+  :mode ("\\.tex\\'" . TeX-latex-mode)
+  :init
+  (setq reftex-plug-into-AUCTeX t)
+  (setq reftex-cite-format 'biblatex)
+  (setq LaTeX-reftex-cite-format-auto-activate t)
+  (setq-default TeX-engine 'xetex)
+  :config
+  (add-hook 'LaTeX-mode-hook 'reftex-mode))
 
 (use-package typescript-mode
   :config
@@ -271,21 +302,25 @@
          (before-save . tide-format-before-save)))
 
 (use-package web-mode
+  :init
+  (setq web-mode-content-types-alist '(("jsx" . "\\.js[x]?\\'")))
   :config
   (add-to-list 'auto-mode-alist '("\\.eex\\'" . web-mode))
   (add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
   (add-to-list 'auto-mode-alist '("\\.html\\'" . web-mode))
   (add-to-list 'auto-mode-alist '("\\.js\\'" . web-mode))
   (add-to-list 'auto-mode-alist '("\\.jsx$" . web-mode))
-  (add-to-list 'web-mode-indentation-params '("lineup-args" . nil))
-  (add-to-list 'web-mode-indentation-params '("lineup-concats" . nil))
-  (add-to-list 'web-mode-indentation-params '("lineup-calls" . nil))
-  (setq web-mode-content-types-alist '(("jsx" . "\\.js[x]?\\'")))
-  (setq web-mode-attr-indent-offset 2)
-  (setq web-mode-attr-value-indent-offset 2)
-  (setq web-mode-code-indent-offset 2)
-  (setq web-mode-css-indent-offset 2)
-  (setq web-mode-markup-indent-offset 2))
+  (defadvice web-mode-highlight-part (around tweak-jsx activate)
+    (if (equal web-mode-content-type "jsx")
+        (let ((web-mode-enable-part-face nil))
+          ad-do-it)
+      ad-do-it))
+  (add-hook 'web-mode-hook (lambda ()
+                             (setq web-mode-attr-indent-offset 2)
+                             (setq web-mode-attr-value-indent-offset 2)
+                             (setq web-mode-code-indent-offset 2)
+                             (setq web-mode-css-indent-offset 2)
+                             (setq web-mode-markup-indent-offset 2))))
 
 (use-package writegood-mode
   :config
@@ -307,7 +342,7 @@
  '(js-indent-level 2)
  '(package-selected-packages
    (quote
-    (tex-site auctex org-ref emmet-mode slime xresources-theme markdown-mode rainbow-delimiters json-mode graphql-mode elixir-mode editorconfig easy-kill f tide writegood-mode company yaml-mode diff-hl web-mode olivetti nim-mode cider clojure-mode smartparens paredit projectile counsel magit nord-theme use-package))))
+    (moody flycheck-rust flycheck-inline rust-mode tex-site auctex org-ref emmet-mode slime xresources-theme markdown-mode rainbow-delimiters json-mode graphql-mode elixir-mode editorconfig easy-kill f tide writegood-mode company yaml-mode diff-hl web-mode olivetti nim-mode cider clojure-mode smartparens paredit projectile counsel magit nord-theme use-package))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

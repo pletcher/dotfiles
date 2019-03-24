@@ -55,6 +55,7 @@ plugins=(
 	git
   lein
   zsh-completions
+	zsh-syntax-highlighting
 )
 
 fpath=(/share/zsh/site-functions $fpath)
