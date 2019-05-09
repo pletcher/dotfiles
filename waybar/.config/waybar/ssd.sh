@@ -1,3 +1,3 @@
 #!/usr/bin/env sh
 
-df --output=pcent -h /home | tail -n 1
+df --output=pcent -h $1 | tail -n 1

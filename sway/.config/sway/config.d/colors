@@ -1,20 +1,3 @@
-set $nord0 #2E3440
-set $nord1 #3B4252
-set $nord2 #434C5E
-set $nord3 #4C566A
-set $nord4 #D8DEE9
-set $nord5 #E5E9F0
-set $nord6 #ECEFF4
-set $nord7 #8FBCBB
-set $nord8 #88C0D0
-set $nord9 #81A1C1
-set $nord10 #5E81AC
-set $nord11 #BF616A
-set $nord12 #D08770
-set $nord13 #EBCB8B
-set $nord14 #A3BE8C
-set $nord15 #B48EAD
-
-client.focused $color3 $color3 $foreground $color8 $color3
-client.unfocused $color1 $color1 $foreground $color8 $color1
+client.focused $background $color3 $color0 $color8 $color3
+client.unfocused $background $background $color3 $color3 $color1
 client.urgent $color11 $color1 $foreground $color8 $color11

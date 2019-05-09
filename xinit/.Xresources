@@ -2,9 +2,15 @@
 
 Xft.dpi: 209
 
-URxvt.font:	xft:Inconsolata:Regular:pixelsize=27:minspace=False, xft:DejaVu Sans:pixelsize=18
+Xcursor.size: 32
+
+URxvt.font:	xft:Fantasque Sans Mono:pixelsize=18, Inconsolata:Regular:pixelsize=27:minspace=False, xft:DejaVu Sans:pixelsize=18
 URxvt.geometry: 90x25
 URxvt.letterSpace: -1
 URxvt.scrollbar: false
 
+xscreensaver.lock: True
+xscreensaver.fadeSeconds: 0:00:00
+xscreensaver.newLoginCommand: dm-tool switch-to-greeter
 #include "/home/pletcher/.cache/wal/colors.Xresources"
+

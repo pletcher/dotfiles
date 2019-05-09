@@ -1,18 +1,26 @@
 #!/usr/bin/env sh
 
-export XDG_CONFIG_HOME = $HOME/.config
-export XDG_DATA_HOME = $HOME/.local/share
+export XDG_CONFIG_HOME=$HOME/.config
+export XDG_DATA_HOME=$HOME/.local/share
+
+export GDK_SCALE=1
 
 [[ -f ~/.Xresources ]] && xrdb -merge ~/.Xresources
 
-xrandr --output eDP-1 --mode 2560x1440 --scale 1x1 --dpi 209
-
-compton -b
+xrandr --output eDP-1 --mode 2560x1440 --scale 1x1 --dpi 209 --primary
 
 setxkbmap -layout us,gr -variant ,polytonic -option grp:caps_toggle -option compose:ralt -option compose:slck
+
 xsetroot -cursor_name left_ptr
 
-libinput-gestures-setup start
+compton -b
 dropbox &
+wal -R
+
+. "${HOME}/.cache/wal/colors.sh"
+
+ln -sf "${HOME}/.cache/wal/dunstrc" "${HOME}/.config/dunst/dunstrc"
+
+pkill dunst
 dunst &
-light-locker --lock-on-suspend &
+

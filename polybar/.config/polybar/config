@@ -8,23 +8,22 @@
 ;=====================================================
 
 [colors]
-background = #dd2e3440
-background-alt = #502e3440
-background-transparent = #00383c4a
-foreground = #d8dee9
-foreground-alt = #e5e9f0
-primary = #a3be8c
-secondary = #d08770
-alert = #bf616a
+background = ${xrdb:color0:#dd2e3440}
+background-alt = ${xrdb:color8:#502e3440}
+foreground = ${xrdb:color7:#d8dee9}
+foreground-alt = ${xrdb:color15:#e5e9f0}
+primary = ${xrdb:color2:#a3be8c}
+secondary = ${xrdb:color3:#d08770}
+alert = ${xrdb:color1:#bf616a}
 
 [bar/topbar]
 monitor = ${env:MONITOR:eDP-1}
-width = 100%
-height = 48
-offset-x = 0
+width = 90% 
+height = 36
+offset-x = 5%
 offset-y = 0
-radius = 0
-fixed-center = true
+radius-bottom = 2
+;; fixed-center = true
 
 background = ${colors.background}
 foreground = ${colors.foreground}
@@ -32,11 +31,13 @@ foreground = ${colors.foreground}
 line-size = 3
 line-color = #f00
 
-border-size = 0
-border-color = #00000000
+border-left-size = 2
+border-bottom-size = 2
+border-right-size = 2
+border-color = ${colors.foreground} 
 
-padding-left = 2
-padding-right = 2
+padding-left = 0
+padding-right = 1 
 
 module-margin-left = 2
 module-margin-right = 2
@@ -44,9 +45,9 @@ module-margin-right = 2
 font-0 = Hack:pixelsize=16;2
 font-1 = icomoon:style=Regular:pixelsize=20;3
 
-modules-left = wlan eth xkeyboard
-modules-center = bspwm 
-modules-right = temperature battery date escapehatch
+modules-left = bspwm
+modules-center = 
+modules-right = wlan eth xkeyboard temperature battery date
 
 wm-restack = bspwm
 
@@ -129,24 +130,17 @@ label-indicator-background = ${colors.secondary}
 [module/bspwm]
 type = internal/bspwm
 
-label-focused =  
-label-focused-font = 5
 label-focused-background = ${colors.background}
-;; label-focused-underline= ${colors.background}
-label-focused-padding = 2
+label-focused-foreground = ${colors.primary}
 
-;; icomoon circle e937
-label-occupied = 
-label-occupied-font = 5
-label-occupied-padding = 2
+;; label-occupied =  
+label-occupied-foreground = ${colors.foreground}
 
-label-urgent = 
 label-urgent-foreground = ${colors.alert}
-label-urgent-padding = 2
+label-urgent-padding = 0
 
-label-empty = 
-label-empty-foreground = ${colors.foreground}
-label-empty-padding = 2
+label-empty = 
+;; 
 
 [module/filesystem]
 type = internal/fs
@@ -285,7 +279,6 @@ time-alt = %H:%M:%S
 
 format-prefix = 
 format-prefix-foreground = ${colors.foreground}
-
 label = %date% %time%
 
 [settings]

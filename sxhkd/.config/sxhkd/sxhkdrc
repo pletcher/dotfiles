@@ -4,10 +4,10 @@
 
 ## terminal emulator
 super + Return
-	env WINIT_HIDPI_FACTOR=1.5 alacritty
+	env kitty
 
 ## program launcher
-super + @space
+super + @d
 	rofi -show run
 
 ## reload sxhkd config

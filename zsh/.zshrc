@@ -57,6 +57,7 @@ plugins=(
   zsh-completions
 	zsh-syntax-highlighting
 )
+autoload -U compinit && compinit
 
 fpath=(/share/zsh/site-functions $fpath)
 
@@ -69,7 +70,7 @@ source $ZSH/oh-my-zsh.sh
 # You may need to manually set your language environment
 export LANG=en_US.UTF-8
 
-export EDITOR='nvim'
+export EDITOR='vim'
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -100,4 +101,4 @@ if [ -f '/home/pletcher/google-cloud-sdk/path.zsh.inc' ]; then . '/home/pletcher
 # The next line enables shell command completion for gcloud.
 if [ -f '/home/pletcher/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/pletcher/google-cloud-sdk/completion.zsh.inc'; fi
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"

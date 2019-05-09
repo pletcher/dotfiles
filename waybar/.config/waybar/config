@@ -1,48 +1,33 @@
 {
     "layer": "top",
-    // "position": "bottom", // Waybar at the bottom of your screen
-    // "height": 30, // Waybar height
-    // "width": 1280, // Waybar width
-    // Choose the order of the modules
     "modules-left": ["sway/workspaces", "sway/mode"],
     "modules-center": ["sway/window"],
-    "modules-right": ["tray", "pulseaudio", "network", "custom/ssd", "cpu", "memory", "battery", "clock"],
-    // Modules configuration
-    // "sway/workspaces": {
-    //     "disable-scroll": true,
-    //     "all-outputs": true,
-    //     "format": "{name}: {icon}",
-    //     "format-icons": {
-    //         "1": "",
-    //         "2": "",
-    //         "3": "",
-    //         "4": "",
-    //         "5": "",
-    //         "urgent": "",
-    //         "focused": "",
-    //         "default": ""
-    //     }
-    // },
+    "modules-right": ["tray", "pulseaudio", "network", "custom/ssd-home", "cpu", "memory", "battery", "clock"],
     "sway/mode": {
         "format": "<span style=\"italic\">{}</span>"
     },
     "tray": {
-        "icon-size": 18,
-        "spacing": 10
+        "icon-size": 24,
+        "spacing": 16
     },
     "clock": {
         "format-alt": "{:%Y-%m-%d}"
     },
     "cpu": {
-        "format": "{usage}%  "
+        "format": "{usage}% "
     },
-		"custom/ssd": {
-			"exec": "$HOME/.config/waybar/ssd.sh 2> /dev/null",
-			"format": "{}   ",
+		"custom/ssd-home": {
+			"exec": "$HOME/.config/waybar/ssd.sh /home 2> /dev/null",
+			"format": "{} /home ",
 			"interval": 60
 		},
+    "custom/ssd-away": {
+      "exec": "$HOME/.config/waybar/ssd.sh /away 2> /dev/null",
+      "format": "{} /away ",
+      "interval": 60
+    },
     "memory": {
-        "format": "{}%  "
+        "format": "{}% "
     },
     "battery": {
         "states": {
@@ -50,28 +35,21 @@
             "warning": 10,
             "critical": 5
         },
-        "format": "{capacity}% {icon}",
-        "format-icons": ["", "", "", "", ""]
+        "format-discharging": "{capacity}% ",
+				"format-charging": "{capacity}% "
     },
     "network": {
-        // "interface": "wlp2s0", // (Optional) To force the use of this interface
-        "format-wifi": "{essid}  ",
-        "format-ethernet": "{ifname}: {ipaddr}/{cidr}  ",
-        "format-disconnected": "Disconnected  "
+        "format-wifi": "{essid} ",
+        "format-ethernet": "{ifname}: {ipaddr}/{cidr} ",
+        "format-disconnected": ""
     },
     "pulseaudio": {
-        //"scroll-step": 1,
-        "format": "{volume}% {icon} ",
-        "format-bluetooth": "{volume}% {icon} ",
-        "format-muted": " ",
+        "format": "{volume}% {icon}",
+        "format-bluetooth": "{volume}% {icon}",
+        "format-muted": "",
         "format-icons": {
-            "headphones": "",
-            "handsfree": "",
-            "headset": "",
-            "phone": "",
-            "portable": "",
-            "car": "",
-            "default": ["", ""]
+            "headphones": "",
+            "default": ["", "", ""]
         },
         "on-click": "pavucontrol"
     }

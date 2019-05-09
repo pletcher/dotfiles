@@ -74,10 +74,10 @@
 (set-default-coding-systems 'utf-8)
 (set-terminal-coding-system 'utf-8)
 (set-keyboard-coding-system 'utf-8)
+(set-language-environment "UTF-8")
 
-(add-to-list 'default-frame-alist
-						 '(font . "InputMonoNarrow light 9"))
-(set-frame-font "InputMonoNarrow light 9")
+(when (member "FantasqueSansMono Nerd Font" (font-family-list))
+  (set-face-attribute 'default nil :font "FantasqueSansMono Nerd Font"))
 
 (global-set-key (kbd "C-x C-b") #'ibuffer)
 (global-set-key (kbd "C-x \\") #'align-regexp)
@@ -91,6 +91,7 @@
 (global-hl-line-mode +1)
 
 (menu-bar-mode -1)
+(scroll-bar-mode -1)
 
 (eval-when-compile
 	(unless (package-installed-p 'use-package)
@@ -101,27 +102,7 @@
 (setq use-package-always-ensure t)
 (setq use-package-verbose t)
 
-;; (use-package nord-theme
-;;   :config
-;;   (load-theme 'nord t)
-;;   (setq nord-comment-brightness 15)
-;;   (setq nord-region-highlight "snowstorm"))
-
-(use-package xresources-theme
-  :config
-  (let ((line (face-attribute 'mode-line :underline)))
-    (set-face-attribute 'mode-line          nil :overline   line)
-    (set-face-attribute 'mode-line-inactive nil :overline   line)
-    (set-face-attribute 'mode-line-inactive nil :underline  line)
-    (set-face-attribute 'mode-line          nil :box        nil)
-    (set-face-attribute 'mode-line-inactive nil :box        nil)
-    (set-face-attribute 'mode-line-inactive nil :background nil)))
-
-(use-package moody
-  :config
-  (setq x-underline-at-descent-line t)
-  (moody-replace-mode-line-buffer-identification)
-  (moody-replace-vc-mode))
+(use-package xresources-theme)
 
 (use-package company
   :config
@@ -152,7 +133,6 @@
 
 (use-package diff-hl
   :config
-  (global-diff-hl-mode +1)
   (add-hook 'dired-mode-hook 'diff-hl-dired-mode)
   (add-hook 'magit-post-refresh-hook 'diff-hl-magit-post-refresh))
 
@@ -181,6 +161,10 @@
 (use-package swiper
   :config
   (global-set-key (kbd "C-s") 'swiper))
+
+(use-package telephone-line
+  :config
+  (telephone-line-mode 1))
 
 (use-package whitespace
   :config
@@ -286,7 +270,7 @@
   :init
   (setq reftex-plug-into-AUCTeX t)
   (setq reftex-cite-format 'biblatex)
-  (setq LaTeX-reftex-cite-format-auto-activate t)
+  ;; (setq LaTeX-reftex-cite-format-auto-activate t)
   (setq-default TeX-engine 'xetex)
   :config
   (add-hook 'LaTeX-mode-hook 'reftex-mode))
@@ -336,13 +320,22 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(bibtex-align-at-equal-sign t)
+ '(bibtex-autoadd-commas t)
+ '(bibtex-contline-indentation 0)
+ '(bibtex-entry-format
+   (quote
+    (opts-or-alts required-fields numerical-fields realign unify-case sort-fields)))
+ '(bibtex-field-indentation 4)
+ '(bibtex-style-indent-basic 4)
+ '(bibtex-text-indentation 17)
  '(custom-safe-themes
    (quote
     ("bf390ecb203806cbe351b966a88fc3036f3ff68cd2547db6ee3676e87327b311" default)))
  '(js-indent-level 2)
  '(package-selected-packages
    (quote
-    (moody flycheck-rust flycheck-inline rust-mode tex-site auctex org-ref emmet-mode slime xresources-theme markdown-mode rainbow-delimiters json-mode graphql-mode elixir-mode editorconfig easy-kill f tide writegood-mode company yaml-mode diff-hl web-mode olivetti nim-mode cider clojure-mode smartparens paredit projectile counsel magit nord-theme use-package))))
+    (telephone-line flycheck-rust flycheck-inline rust-mode tex-site auctex org-ref emmet-mode slime xresources-theme markdown-mode rainbow-delimiters json-mode graphql-mode elixir-mode editorconfig easy-kill f tide writegood-mode company yaml-mode diff-hl web-mode olivetti nim-mode cider clojure-mode smartparens paredit projectile counsel magit nord-theme use-package))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

@@ -1,8 +1,8 @@
-# Default config for sway
+# Default config for i3
 #
-# Copy this to ~/.config/sway/config and edit it to your liking.
+# Copy this to ~/.config/i3/config and edit it to your liking.
 #
-# Read `man 5 sway` for a complete reference.
+# Read `man i3` for a complete reference.
 
 exec --no-startup-id xrdb ~/.Xresources
 
@@ -10,75 +10,65 @@ exec --no-startup-id xrdb ~/.Xresources
 #
 # Logo key. Use Mod1 for Alt.
 set $mod Mod4
+
 # Home row direction keys, like vim
 set $left h
 set $down j
 set $up k
 set $right l
+
 # Your preferred terminal emulator
 set $term kitty
+
 # Your preferred application launcher
-# Note: it's recommended that you pass the final command to sway
-set $menu rofi -combi-modi run#drun -show combi -modi combi#window#ssh | xargs swaymsg exec
+set $menu rofi -combi-modi run#drun -show combi -modi combi#window#ssh
 
-include "$HOME/.cache/wal/colors-sway"
+### Font
 
-### Output configuration
-
-# Example configuration:
-#
-#   output HDMI-A-1 resolution 1920x1080 position 1920,0
-#
-# You can get the names of your outputs by running: swaymsg -t get_outputs
-
-output * bg $wallpaper fill
-output eDP-1 resolution 2560x1440 position 0,0
+font pango: Hack Nerd Font Regular 9
 
 ### Colors
 
-include ./config.d/colors
+# Set colors from Xresources
+# Change 'color7' and 'color2' to whatever colors you want i3 to use 
+# from the generated scheme.
+# NOTE: The '#f0f0f0' in the lines below is the color i3 will use if
+# it fails to get colors from Xresources.
+set_from_resource $fg             i3wm.color7 #f0f0f0
+set_from_resource $bg             i3wm.color2 #f0f0f0
+set_from_resource $txt            i3wm.color15 #f0f0f0
+set_from_resource $black					i3wm.color0
+set_from_resource $red    		    i3wm.color1  #c31633
+set_from_resource $green	  			i3wm.color2  #f3f3f3
+set_from_resource $yellow  		 		i3wm.color3  #f0f0f0
+set_from_resource	$blue						i3wm.color4
+set_from_resource $purple					i3wm.color5
+set_from_resource	$cyan						i3wm.color6
+set_from_resource $white					i3wm.color7
+
+set_from_resource	$bright_black		i3wm.color8
+set_from_resource $bright_red  		i3wm.color9  #c31633
+set_from_resource $bright_green 	i3wm.color10 #f3f3f3
+set_from_resource $bright_yellow 	i3wm.color11 #f0f0f0
+set_from_resource $bright_blue		i3wm.color12
+set_from_resource	$bright_purple	i3wm.color13
+set_from_resource	$bright_cyan		i3wm.color14
+set_from_resource $bright_white		i3wm.color15
+
+# class 								 <border> <bg> <text> <indicator> <child_border>
+client.focused           $bg  $white  $black  $bg  $fg
+client.focused_inactive  $bg  $bright_black  $bright_white  $bg  $fg
+client.unfocused         $bg  $bright_white  $bright_black  $bg  $fg
+client.urgent            $bg  $bright_green  $black  $bg  $fg
+client.placeholder       $bg  $bg  $txt  $bg  $fg
+
+client.background       $bg
 
 ### Gaps
 
-include ./config.d/gaps
-
-### Idle configuration
-#
-# Example configuration:
-#
-# This will lock your screen after x seconds of inactivity, then turn off
-# your displays after another y seconds, and turn your screens back on when
-# resumed. It will also lock your screen before your computer goes to sleep.
-
-exec swayidle \
-     timeout 600 swaylock \
-	   timeout 660 'swaymsg "output * dpms off"' \
-     resume 'swaymsg "output * dpms on"' \
-     before-sleep swaylock
-
-### Input configuration
-#
-# Example configuration:
-#
-#   input "2:14:SynPS/2_Synaptics_TouchPad" {
-#       dwt enabled
-#       tap enabled
-#       natural_scroll enabled
-#       middle_emulation enabled
-#   }
-#
-# You can get the names of your inputs by running: swaymsg -t get_inputs
-# Read `man 5 sway-input` for more information about this section.
-
-input "2:7:SynPS/2_Synaptics_TouchPad" {
-	accel_profile adaptive
-	click_method clickfinger
-	dwt enabled
-	natural_scroll enabled
-	pointer_accel 0.5
-	scroll_method two_finger
-	tap disabled
-}
+gaps inner 10
+gaps outer 0
+smart_gaps on
 
 ### Key bindings
 #
@@ -98,17 +88,23 @@ input "2:7:SynPS/2_Synaptics_TouchPad" {
     # Despite the name, also works for non-floating windows.
     # Change normal to inverse to use left mouse button for resizing and right
     # mouse button for dragging.
-    floating_modifier $mod normal
+    floating_modifier $mod
 
     # reload the configuration file
     bindsym $mod+Shift+c reload
 
-    # exit sway (logs you out of your Wayland session)
-    bindsym $mod+Shift+e exec swaynag -t warning -m 'You pressed the exit shortcut. Do you really want to exit sway? This will end your Wayland session.' -b 'Yes, exit sway' 'swaymsg exit'
+    # restart i3 in-place
+    bindsym $mod+Shift+r restart
 
-		# grab a screenshot
-		bindsym print exec --no-startup-id slurp | grim -g - $(xdg-user-dir PICTURES)/$(date +'screenshot_%F-%T.png')
-    bindsym Shift+print exec --no-startup-id grim - | wl-copy
+    # exit i3 (logs you out of your X session)
+    # bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
+		
+    # desktop screenshot
+    bindsym --release Print exec "scrot $(xdg-user-dir PICTURES)/$(date --iso-8601='seconds').png -m -e 'xclip -selection c -t image/png < $f'"
+
+    # selection screenshot
+    bindsym --release Shift+Print exec "scrot $(xdg-user-dir PICTURES)/$(date --iso-8601='seconds').png -s -e 'xclip -selection c -t image/png < $f'"
+
 #
 # Moving around:
 #
@@ -166,8 +162,8 @@ input "2:7:SynPS/2_Synaptics_TouchPad" {
     # You can "split" the current object of your focus with
     # $mod+b or $mod+v, for horizontal and vertical splits
     # respectively.
-    bindsym $mod+b splith
-    bindsym $mod+v splitv
+    bindsym $mod+b split h
+    bindsym $mod+v split v
 
     # Switch the current container between different layout styles
     bindsym $mod+s layout stacking
@@ -222,10 +218,23 @@ mode "resize" {
 }
 bindsym $mod+r mode "resize"
 
-### Window assignments
+set $Locker exec i3lock
 
-assign [class="Sublime Text"] 2
-assign [class="Slack"] 10
+set $mode_system System (l) lock, (e) logout, (s) suspend, (h) hibernate, (r) reboot, (Shift+s) shutdown
+mode "$mode_system" {
+    bindsym l exec --no-startup-id $Locker, mode "default"
+    bindsym e exec --no-startup-id i3-msg exit, mode "default"
+    bindsym s exec --no-startup-id $Locker && systemctl suspend, mode "default"
+    bindsym h exec --no-startup-id $Locker && systemctl hibernate, mode "default"
+    bindsym r exec --no-startup-id systemctl reboot, mode "default"
+    bindsym Shift+s exec --no-startup-id systemctl poweroff -i, mode "default"
+
+    # back to normal: Enter or Escape
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+bindsym $mod+shift+e mode "$mode_system"
 
 ### Volume
 bindsym XF86AudioMute exec amixer -q set Master toggle
@@ -233,12 +242,24 @@ bindsym XF86AudioRaiseVolume exec amixer -q set Master 5%+
 bindsym XF86AudioLowerVolume exec amixer -q set Master 5%-
 
 ### Brightness 
-bindsym XF86MonBrightnessUp exec "light -A 5"
-bindsym Shift+XF86MonBrightnessUp exec "light -A 1"
+bindsym XF86MonBrightnessUp exec "xbacklight -inc 5"
+bindsym XF86MonBrightnessDown exec "xbacklight -dec 5"
 
-bindsym XF86MonBrightnessDown exec "light -U 5"
-bindsym Shift+XF86MonBrightnessDown exec "light -U 1"
-
-exec --no-startup-id waybar
-exec --no-startup-id dropbox
-exec --no-startup-id mako
+# bar {
+#  colors {
+#    background $bg
+#	  separator $white
+#	  statusline $white
+#
+#		# colorclass			 border  bg      text
+#    focused_workspace  $fg	   $bg	 	 $fg
+#    active_workspace   $bg	 	 $bg     $fg
+#    inactive_workspace $bright_black $bright_black $black
+#    urgent_workspace   $blue   $bright_blue $bright_white
+#    binding_mode       $cyan	 $bright_cyan $bright_white
+#	}
+#	font pango: Hack Nerd Font 9
+#	position top
+#	status_command i3blocks -c ~/.config/i3blocks/config
+#  separator_symbol | 
+# }
