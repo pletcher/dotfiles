@@ -27,7 +27,7 @@
 	(package-refresh-contents))
 
 (setq user-full-name "Charles Pletcher"
-			user-mail-address "pletcher@protonmail.com")
+      user-mail-address "pletcher@protonmail.com")
 
 (setq load-prefer-newer t)
 
@@ -44,8 +44,8 @@
 (setq inhibit-startup-screen t)
 
 (setq scroll-margin 0
-			scroll-conservatively 10000
-			scroll-preserve-screen-position 1)
+      scroll-conservatively 10000
+      scroll-preserve-screen-position 1)
 
 (line-number-mode t)
 (column-number-mode t)
@@ -102,7 +102,8 @@
 (setq use-package-always-ensure t)
 (setq use-package-verbose t)
 
-(use-package xresources-theme)
+(use-package xresources-theme
+  :if window-system)
 
 (use-package company
   :config
@@ -170,8 +171,7 @@
   :config
   (setq whitespace-line-column 100)
   (setq whitespace-style '(face empty trailing lines-tail))
-  (add-hook 'prog-mode-hook #'whitespace-mode)
-  (add-hook 'before-save-hook #'whitespace-cleanup))
+  (add-hook 'prog-mode-hook #'whitespace-mode))
 
 ;;;
 ;; programming language modes start here
@@ -246,6 +246,8 @@
   (setq bibtex-completion-bibliography "~/Dropbox/bibliography/references.bib")
   (require 'org-ref))
 
+(use-package prettier-js)
+
 (use-package rainbow-delimiters
   :config
   (add-hook 'prog-mode-hook #'rainbow-delimiters-mode))
@@ -288,6 +290,11 @@
 (use-package web-mode
   :init
   (setq web-mode-content-types-alist '(("jsx" . "\\.js[x]?\\'")))
+  (setq web-mode-attr-indent-offset 2)
+  (setq web-mode-attr-value-indent-offset 2)
+  (setq web-mode-code-indent-offset 2)
+  (setq web-mode-css-indent-offset 2)
+  (setq web-mode-markup-indent-offset 2)
   :config
   (add-to-list 'auto-mode-alist '("\\.eex\\'" . web-mode))
   (add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
@@ -299,12 +306,8 @@
         (let ((web-mode-enable-part-face nil))
           ad-do-it)
       ad-do-it))
-  (add-hook 'web-mode-hook (lambda ()
-                             (setq web-mode-attr-indent-offset 2)
-                             (setq web-mode-attr-value-indent-offset 2)
-                             (setq web-mode-code-indent-offset 2)
-                             (setq web-mode-css-indent-offset 2)
-                             (setq web-mode-markup-indent-offset 2))))
+  (add-hook 'web-mode-hook #'add-node-modules-path)
+  (add-hook 'web-mode-hook #'prettier-js-mode))
 
 (use-package writegood-mode
   :config
@@ -335,7 +338,7 @@
  '(js-indent-level 2)
  '(package-selected-packages
    (quote
-    (telephone-line flycheck-rust flycheck-inline rust-mode tex-site auctex org-ref emmet-mode slime xresources-theme markdown-mode rainbow-delimiters json-mode graphql-mode elixir-mode editorconfig easy-kill f tide writegood-mode company yaml-mode diff-hl web-mode olivetti nim-mode cider clojure-mode smartparens paredit projectile counsel magit nord-theme use-package))))
+    (prettier-js flycheck-rust flycheck-inline rust-mode tex-site auctex org-ref emmet-mode slime xresources-theme markdown-mode rainbow-delimiters json-mode graphql-mode elixir-mode editorconfig easy-kill f tide writegood-mode company yaml-mode diff-hl web-mode olivetti nim-mode cider clojure-mode smartparens paredit projectile counsel magit nord-theme use-package))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

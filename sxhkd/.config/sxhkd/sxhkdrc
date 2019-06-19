@@ -38,6 +38,14 @@ XF86MonBrightnessUp
 XF86MonBrightnessDown
   brightnessControl.sh down
 
+# Screen shot with selection
+Print
+  maim -s | xclip -selection clipboard -t image/png
+
+# Screen shot (whole screen)
+super + Print
+  maim ~/Pictures/$(date +%s).png
+
 # Screen lock
 XF86ScreenSaver
   blur

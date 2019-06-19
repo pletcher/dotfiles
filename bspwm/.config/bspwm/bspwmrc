@@ -39,6 +39,8 @@ $HOME/.config/polybar/launch.sh
 
 ln -sf "${HOME}/.cache/wal/dunstrc" "${HOME}/.config/dunst/dunstrc"
 
+cp "${HOME}/.cache/wal/base16-wal-theme.el" "{$HOME}/.emacs.d/themes/base16-wal-theme.el"
+
 pkill dunst
 dunst &
 

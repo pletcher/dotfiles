@@ -8,45 +8,50 @@
 ;=====================================================
 
 [colors]
-background = ${xrdb:color0:#dd2e3440}
-background-alt = ${xrdb:color8:#502e3440}
+include-file = /home/pletcher/.cache/wal/colors-polybar
+; background = ${xrdb:color0:#dd2e34}
+; background-alt = ${xrdb:color8:#502e3440}
 foreground = ${xrdb:color7:#d8dee9}
 foreground-alt = ${xrdb:color15:#e5e9f0}
 primary = ${xrdb:color2:#a3be8c}
 secondary = ${xrdb:color3:#d08770}
-alert = ${xrdb:color1:#bf616a}
+alert = ${xrdb:color6:#bf616a}
+transparent = #00ffffff
 
 [bar/topbar]
 monitor = ${env:MONITOR:eDP-1}
-width = 90% 
+width = 90%
 height = 36
 offset-x = 5%
 offset-y = 0
-radius-bottom = 2
-;; fixed-center = true
 
 background = ${colors.background}
 foreground = ${colors.foreground}
 
-line-size = 3
-line-color = #f00
-
 border-left-size = 2
 border-bottom-size = 2
 border-right-size = 2
-border-color = ${colors.foreground} 
+border-color = ${colors.foreground-transparent}
 
-padding-left = 0
-padding-right = 1 
+# defaults for modules
+format-background = ${colors.background}
+format-foreground = ${colors.foreground}
 
-module-margin-left = 2
-module-margin-right = 2
+line-size = 3
+line-color = #f00
+
+padding = 1
+
+module-margin = 2
 
 font-0 = Hack:pixelsize=16;2
-font-1 = icomoon:style=Regular:pixelsize=20;3
+# https://icons8.com/line-awesome/cheatsheet
+font-1 = "LineAwesome:pixelsize=24;2"
+# https://icomoon.io/app/#/select/font
+font-2 = icomoon:style=Regular:pixelsize=18;3
 
 modules-left = bspwm
-modules-center = 
+modules-center =
 modules-right = wlan eth xkeyboard temperature battery date
 
 wm-restack = bspwm
@@ -56,137 +61,43 @@ scroll-down = bspwm-deskprev
 
 cursor-click = pointer
 
-[module/xbacklight]
-type = internal/xbacklight
-
-format = <label> <bar>
-label = 
-output = eDP-1
-
-bar-width = 10
-bar-indicator = 
-bar-indicator-foreground = #ff
-bar-indicator-font = 2
-bar-fill = ─
-bar-fill-font = 2
-bar-fill-foreground = #9f78e1
-bar-empty = ─
-bar-empty-font = 2
-bar-empty-foreground = ${colors.foreground-alt}
-
-[module/backlight-acpi]
-inherit = module/xbacklight
-type = internal/backlight
-card = intel_backlight
-
-[module/volume]
-type = internal/alsa
-
-format-volume = <ramp-volume> <bar-volume>
-label-volume = 
-label-volume-foreground = ${root.foreground}
-
-format-muted = <label-muted> <bar-volume>
-format-muted-foreground = ${colors.foreground}
-label-muted = 
-
-ramp-volume-0 = 
-ramp-volume-1 = 
-ramp-volume-2 = 
-
-bar-volume-width = 10
-bar-volume-foreground-0 = ${colors.foreground}
-bar-volume-foreground-1 = ${colors.foreground}
-bar-volume-foreground-2 = ${colors.primary}
-bar-volume-foreground-3 = ${colors.primary}
-bar-volume-foreground-4 = ${colors.secondary}
-bar-volume-foreground-5 = ${colors.secondary}
-bar-volume-foreground-6 = ${colors.alert}
-bar-volume-gradient = false
-bar-volume-indicator = 
-bar-volume-indicator-font = 5
-bar-volume-fill = ─
-bar-volume-fill-font = 2
-bar-volume-empty = ─
-bar-volume-empty-font = 2
-bar-volume-empty-foreground = ${colors.foreground-alt}
-
 [module/xkeyboard]
 type = internal/xkeyboard
 blacklist-0 = num lock
 
-format-prefix = " "
+format-prefix = ""
+; " "
 format-prefix-foreground = ${colors.foreground}
-;; format-prefix-underline = ${colors.foreground-alt}
 
 label-layout = %layout%
-;; label-layout-underline = ${colors.foreground-alt}
 
-label-indicator-padding = 2
 label-indicator-margin = 1
-label-indicator-background = ${colors.secondary}
-;; label-indicator-underline = ${colors.secondary}
 
 [module/bspwm]
 type = internal/bspwm
 
-label-focused-background = ${colors.background}
+label-focused = %name%
 label-focused-foreground = ${colors.primary}
+label-focused-padding = 1
 
-;; label-occupied =  
+label-occupied = %name%
 label-occupied-foreground = ${colors.foreground}
+label-occupied-padding = 1
 
-label-urgent-foreground = ${colors.alert}
-label-urgent-padding = 0
+label-urgent = %name%
+label-urgent-background = ${colors.alert}
+label-urgent-foreground = ${colors.background}
+label-urgent-padding = 1
 
-label-empty = 
-;; 
-
-[module/filesystem]
-type = internal/fs
-interval = 25
-
-mount-0 = /home
-
-;; icomoon bluetooth e920 
-
-label-mounted =  %percentage_used%%
-label-unmounted = %mountpoint% not mounted
-label-unmounted-foreground = ${colors.foreground}
-
-[module/mpd]
-type = internal/mpd
-format-online = <label-song>  <icon-prev> <icon-stop> <toggle> <icon-next>
-
-icon-prev = 
-icon-stop = 
-icon-play = 
-icon-pause = 
-icon-next = 
-label-song-maxlen = 25
-label-song-ellipsis = true
-
-[module/cpu]
-type = internal/cpu
-interval = 2
-format-prefix = ""
-format-prefix-foreground = ${colors.foreground}
-label = %percentage:2%%
-
-[module/memory]
-type = internal/memory
-interval = 2
-format-prefix = " "
-format-prefix-foreground = ${colors.foreground}
-label = %percentage_used%%
+label-empty =
 
 [module/wlan]
 type = internal/network
 interface = wlp2s0
 interval = 3.0
 
-format-connected = <ramp-signal> <label-connected>
-label-connected = %essid%
+format-connected = <label-connected>
+label-connected =  %essid%
 
 format-disconnected =
 ramp-signal-0 = 
@@ -212,19 +123,10 @@ type = internal/temperature
 thermal-zone = 0
 warn-temperature = 80
 
-format = <ramp> <label>
-;; format-underline = ${colors.foreground}
-format-warn = <ramp> <label-warn>
-;; format-warn-underline = ${colors.secondary}
+format = <label>
+format-warn-foreground = ${colors.alert}
 
-label = %temperature-c%
-label-warn = %temperature-c%
-label-warn-foreground = ${colors.alert}
-
-ramp-0 = 
-ramp-1 = 
-ramp-2 = 
-ramp-foreground = ${colors.foreground}
+label = %temperature-c%
 
 [module/battery]
 type = internal/battery
@@ -232,40 +134,28 @@ battery = BAT0
 adapter = AC
 full-at = 98
 time-format = %H:%M
+ramp-capacity-0 = ""
+ramp-capacity-1 = ""
+ramp-capacity-2 = ""
+ramp-capacity-3 = ""
+ramp-capacity-4 = ""
 
-label-charging = %consumption% W
-format-charging-prefix = " "
-format-charging = <label-charging>
-;; format-charging-underline = ${colors.foreground}
+label-charging = %percentage%% %consumption% W
+# format-charging-prefix = " "
+format-charging = <animation-charging> <label-charging>
+animation-charging-0 = ${self.ramp-capacity-0}
+animation-charging-1 = ${self.ramp-capacity-1}
+animation-charging-2 = ${self.ramp-capacity-2}
+animation-charging-3 = ${self.ramp-capacity-3}
+animation-charging-4 = ${self.ramp-capacity-4}
+animation-charging-framerate = 750
 
-label-discharging = %time% %consumption% W
-format-discharging-prefix = " "
-format-discharging = <label-discharging>
-;; format-discharging-underline = ${colors.secondary}
+label-discharging = %percentage%% %consumption% W
+# format-discharging-prefix = " "
+format-discharging = <ramp-capacity> <label-discharging>
 
-format-full-prefix = " "
+format-full-prefix = ${self.ramp-capacity-4}
 format-full-prefix-foreground = ${colors.foreground}
-
-;; in case something blows up
-[module/escapehatch]
-type = custom/menu
-
-expand-right = false
-
-format-spacing = 0
-
-label-open = 
-label-open-foreground = ${colors.foreground}
-label-close = 
-label-close-foreground = ${colors.secondary}
-label-separator = " | "
-label-separator-foreground = ${colors.foreground-alt}
-
-menu-0-0 = 
-menu-0-0-exec = shutdown now
-menu-0-1 = 
-menu-0-1-exec = reboot
-
 
 [module/date]
 type = internal/date
@@ -277,7 +167,7 @@ date-alt = " %Y-%m-%d"
 time = %H:%M
 time-alt = %H:%M:%S
 
-format-prefix = 
+format-prefix = ""
 format-prefix-foreground = ${colors.foreground}
 label = %date% %time%
 
