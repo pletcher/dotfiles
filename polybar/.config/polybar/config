@@ -44,11 +44,11 @@ padding = 1
 
 module-margin = 2
 
-font-0 = Hack:pixelsize=16;2
+font-0 = monospace:pixelsize=16;0
 # https://icons8.com/line-awesome/cheatsheet
-font-1 = "LineAwesome:pixelsize=24;2"
+font-1 = "LineAwesome:pixelsize=24;0"
 # https://icomoon.io/app/#/select/font
-font-2 = icomoon:style=Regular:pixelsize=18;3
+font-2 = icomoon:style=Regular:pixelsize=18;0
 
 modules-left = bspwm
 modules-center =
@@ -167,7 +167,7 @@ date-alt = " %Y-%m-%d"
 time = %H:%M
 time-alt = %H:%M:%S
 
-format-prefix = ""
+# format-prefix = ""
 format-prefix-foreground = ${colors.foreground}
 label = %date% %time%
 

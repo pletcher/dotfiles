@@ -95,6 +95,11 @@ function emc() {
 	emacsclient -c -a '' $1
 }
 
+function mmv() {
+  mkdir -p -- "$argv[-1]"
+  mv "$@"
+}
+
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/home/pletcher/google-cloud-sdk/path.zsh.inc' ]; then . '/home/pletcher/google-cloud-sdk/path.zsh.inc'; fi
 

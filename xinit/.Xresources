@@ -1,6 +1,6 @@
 ! Xresources
 
-Emacs.font: Hack-9
+Emacs.font: Iosevka-10
 
 Xft.dpi: 209
 

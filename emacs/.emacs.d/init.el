@@ -27,7 +27,7 @@
 	(package-refresh-contents))
 
 (setq user-full-name "Charles Pletcher"
-      user-mail-address "pletcher@protonmail.com")
+      user-mail-address "c@plet.ch")
 
 (setq load-prefer-newer t)
 
@@ -76,9 +76,6 @@
 (set-keyboard-coding-system 'utf-8)
 (set-language-environment "UTF-8")
 
-(when (member "FantasqueSansMono Nerd Font" (font-family-list))
-  (set-face-attribute 'default nil :font "FantasqueSansMono Nerd Font"))
-
 (global-set-key (kbd "C-x C-b") #'ibuffer)
 (global-set-key (kbd "C-x \\") #'align-regexp)
 
@@ -102,8 +99,12 @@
 (setq use-package-always-ensure t)
 (setq use-package-verbose t)
 
-(use-package xresources-theme
-  :if window-system)
+;; (use-package xresources-theme
+;;   :if window-system)
+
+(use-package apropospriate-theme
+  :config
+  (load-theme 'apropospriate-dark t))
 
 (use-package company
   :config
@@ -162,10 +163,6 @@
 (use-package swiper
   :config
   (global-set-key (kbd "C-s") 'swiper))
-
-(use-package telephone-line
-  :config
-  (telephone-line-mode 1))
 
 (use-package whitespace
   :config
@@ -338,10 +335,13 @@
  '(js-indent-level 2)
  '(package-selected-packages
    (quote
-    (prettier-js flycheck-rust flycheck-inline rust-mode tex-site auctex org-ref emmet-mode slime xresources-theme markdown-mode rainbow-delimiters json-mode graphql-mode elixir-mode editorconfig easy-kill f tide writegood-mode company yaml-mode diff-hl web-mode olivetti nim-mode cider clojure-mode smartparens paredit projectile counsel magit nord-theme use-package))))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
+    (writegood-mode
+     emmet-mode
+     telephone-line
+     apropospriate-theme
+     prettier-js
+     flycheck-rust
+     flycheck-inline
+     rust-mode
+     tex-site
+     auctex org-ref slime xresources-theme markdown-mode rainbow-delimiters json-mode graphql-mode elixir-mode editorconfig easy-kill f tide company yaml-mode diff-hl web-mode olivetti nim-mode cider clojure-mode smartparens paredit projectile counsel magit use-package))))
