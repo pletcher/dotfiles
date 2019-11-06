@@ -89,8 +89,6 @@ source_if_exists "$HOME/.zshenv"
 source_if_exists "$HOME/.fzf.zsh"
 source_if_exists "$HOME/.iterm2_shell_integration.zsh"
 
-(cat "$HOME/.cache/wal/sequences" &)
-
 function emc() {
 	emacsclient -c -a '' $1
 }
@@ -100,6 +98,10 @@ function mmv() {
   mv "$@"
 }
 
+function md2docx() {
+  pandoc --filter pandoc-citeproc --reference-doc /home/pletcher/Documents/writing/reference.docx -i $1 -o $1-pandoc.docx
+}
+
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/home/pletcher/google-cloud-sdk/path.zsh.inc' ]; then . '/home/pletcher/google-cloud-sdk/path.zsh.inc'; fi
 
@@ -107,3 +109,4 @@ if [ -f '/home/pletcher/google-cloud-sdk/path.zsh.inc' ]; then . '/home/pletcher
 if [ -f '/home/pletcher/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/pletcher/google-cloud-sdk/completion.zsh.inc'; fi
 
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+

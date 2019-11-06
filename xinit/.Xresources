@@ -2,9 +2,30 @@
 
 Emacs.font: Iosevka-10
 
-Xft.dpi: 209
-
+Xft.dpi: 192
+Xft.hinting: true
+Xft.antialias: true
 Xcursor.size: 32
+
+URxvt.clipboard.autocopy: true
+URxvt.font: xft:Iosevka:style=Regular:pixelsize=24
+URxvt.boldFont: xft:Iosevka:style=Bold:pixelsize=24
+URxvt.italicFont: xft:Iosevka:style=Italic:pixelsize=24
+URxvt.boldItalicFont: xft:Iosevka:style=Bold Italic:pixelsize=24
+URxvt.internalBorder: 24
+URxvt.iso14755: false
+URxvt.keysym.Control-Up:     \033[1;5A
+URxvt.keysym.Control-Down:   \033[1;5B
+URxvt.keysym.Control-Left:   \033[1;5D
+URxvt.keysym.Control-Right:  \033[1;5C
+URxvt.keysym.M-Escape: perl:keyboard-select:activate
+URxvt.keysym.M-s: perl:keyboard-select:search
+URxvt.perl-ext-common: default,selection-to-clipboard,keyboard-select,url-select
+URxvt.scrollBar: false
+URxvt.secondaryScreen: true
+URxvt.secondaryScroll: false
+URxvt.urlLauncher: firefox
+URxvt.underlineURLs: true
 
 xscreensaver.lock: True
 xscreensaver.fadeSeconds: 0:00:00

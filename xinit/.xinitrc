@@ -39,4 +39,3 @@ fi
 
 . "$userprofile"
 
-exec bspwm

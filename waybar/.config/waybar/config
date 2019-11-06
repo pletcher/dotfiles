@@ -2,32 +2,12 @@
     "layer": "top",
     "modules-left": ["sway/workspaces", "sway/mode"],
     "modules-center": ["sway/window"],
-    "modules-right": ["tray", "pulseaudio", "network", "custom/ssd-home", "cpu", "memory", "battery", "clock"],
+    "modules-right": ["pulseaudio", "network", "battery", "clock"],
     "sway/mode": {
         "format": "<span style=\"italic\">{}</span>"
     },
-    "tray": {
-        "icon-size": 24,
-        "spacing": 16
-    },
-    "clock": {
+   "clock": {
         "format-alt": "{:%Y-%m-%d}"
-    },
-    "cpu": {
-        "format": "{usage}% "
-    },
-		"custom/ssd-home": {
-			"exec": "$HOME/.config/waybar/ssd.sh /home 2> /dev/null",
-			"format": "{} /home ",
-			"interval": 60
-		},
-    "custom/ssd-away": {
-      "exec": "$HOME/.config/waybar/ssd.sh /away 2> /dev/null",
-      "format": "{} /away ",
-      "interval": 60
-    },
-    "memory": {
-        "format": "{}% "
     },
     "battery": {
         "states": {
@@ -35,22 +15,17 @@
             "warning": 10,
             "critical": 5
         },
-        "format-discharging": "{capacity}% ",
-				"format-charging": "{capacity}% "
+        "format-discharging": "{capacity}% ",
+				"format-charging": "{capacity}% "
     },
     "network": {
-        "format-wifi": "{essid} ",
-        "format-ethernet": "{ifname}: {ipaddr}/{cidr} ",
-        "format-disconnected": ""
+        "format-wifi": "{essid} ",
+        "format-ethernet": "{ifname}: {ipaddr}/{cidr}",
+        "format-disconnected": ""
     },
     "pulseaudio": {
-        "format": "{volume}% {icon}",
-        "format-bluetooth": "{volume}% {icon}",
-        "format-muted": "",
-        "format-icons": {
-            "headphones": "",
-            "default": ["", "", ""]
-        },
+        "format": "{volume}% ",
+        "format-muted": "", 
         "on-click": "pavucontrol"
     }
 }

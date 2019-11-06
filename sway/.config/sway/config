@@ -8,18 +8,21 @@ exec --no-startup-id xrdb ~/.Xresources
 
 ### Variables
 #
-# Logo key. Use Mod1 for Alt.
-set $mod Mod4
+# Logo key is Mod4. Use Mod1 for Alt.
+set $mod Mod1
+
 # Home row direction keys, like vim
 set $left h
 set $down j
 set $up k
 set $right l
 # Your preferred terminal emulator
-set $term kitty
+set $term urxvt
 # Your preferred application launcher
 # Note: it's recommended that you pass the final command to sway
-set $menu rofi -combi-modi run#drun -show combi -modi combi#window#ssh | xargs swaymsg exec
+set $menu wofi --show drun | xargs swaymsg exec
+
+# rofi -combi-modi run#drun -show combi -modi combi#window#ssh | xargs swaymsg exec
 
 include "$HOME/.cache/wal/colors-sway"
 
@@ -80,6 +83,19 @@ input "2:7:SynPS/2_Synaptics_TouchPad" {
 	tap disabled
 }
 
+input * {
+  xkb_layout us,el
+  xkb_variant ,polytonic
+  xkb_options grp:caps_toggle,compose:ralt
+}
+
+seat seat0 xcursor_theme Paper 32
+
+exec_always {
+    gsettings set org.gnome.desktop.interface cursor-theme Paper
+    gsettings set org.gnome.desktop.interface cursor-size 32
+}
+
 ### Key bindings
 #
 # Basics:
@@ -118,10 +134,10 @@ input "2:7:SynPS/2_Synaptics_TouchPad" {
     bindsym $mod+$up focus up
     bindsym $mod+$right focus right
     # or use $mod+[up|down|left|right]
-    bindsym $mod+Left focus left
-    bindsym $mod+Down focus down
-    bindsym $mod+Up focus up
-    bindsym $mod+Right focus right
+    # bindsym $mod+Left focus left
+    # bindsym $mod+Down focus down
+    # bindsym $mod+Up focus up
+    # bindsym $mod+Right focus right
 
     # _move_ the focused window with the same, but add Shift
     bindsym $mod+Shift+$left move left
@@ -163,28 +179,32 @@ input "2:7:SynPS/2_Synaptics_TouchPad" {
 #
 # Layout stuff:
 #
-    # You can "split" the current object of your focus with
-    # $mod+b or $mod+v, for horizontal and vertical splits
-    # respectively.
-    bindsym $mod+b splith
-    bindsym $mod+v splitv
 
-    # Switch the current container between different layout styles
-    bindsym $mod+s layout stacking
-    bindsym $mod+w layout tabbed
-    bindsym $mod+e layout toggle split
+    bindsym --to-code {
+      # You can "split" the current object of your focus with
+      # $mod+b or $mod+v, for horizontal and vertical splits
+      # respectively.
+      $mod+b splith
+      $mod+v splitv
 
-    # Make the current focus fullscreen
-    bindsym $mod+f fullscreen
+      # Switch the current container between different layout styles
+      $mod+s layout stacking
+      $mod+w layout tabbed
+      $mod+e layout toggle split
 
-    # Toggle the current focus between tiling and floating mode
-    bindsym $mod+Shift+space floating toggle
+      # Make the current focus fullscreen
+      $mod+f fullscreen
 
-    # Swap focus between the tiling area and the floating area
-    bindsym $mod+space focus mode_toggle
+      # Toggle the current focus between tiling and floating mode
+      $mod+Shift+space floating toggle
 
-    # move focus to the parent container
-    bindsym $mod+a focus parent
+      # Swap focus between the tiling area and the floating area
+      $mod+space focus mode_toggle
+
+      # move focus to the parent container
+      $mod+a focus parent
+    }
+
 #
 # Scratchpad:
 #
