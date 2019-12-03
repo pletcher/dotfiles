@@ -99,7 +99,7 @@ function mmv() {
 }
 
 function md2docx() {
-  pandoc --filter pandoc-citeproc --reference-doc /home/pletcher/Documents/writing/reference.docx -i $1 -o $1-pandoc.docx
+  pandoc --filter pandoc-citeproc --csl /home/pletcher/code/csls/chicago-author-date.csl --reference-doc /home/pletcher/Documents/writing/reference.docx -i $1 -o $1-pandoc.docx
 }
 
 # The next line updates PATH for the Google Cloud SDK.

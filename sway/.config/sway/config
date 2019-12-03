@@ -17,7 +17,7 @@ set $down j
 set $up k
 set $right l
 # Your preferred terminal emulator
-set $term urxvt
+set $term kitty
 # Your preferred application launcher
 # Note: it's recommended that you pass the final command to sway
 set $menu wofi --show drun | xargs swaymsg exec
@@ -36,6 +36,12 @@ include "$HOME/.cache/wal/colors-sway"
 
 output * bg $wallpaper fill
 output eDP-1 resolution 2560x1440 position 0,0
+
+# with lid closed
+
+set $laptop eDP-1
+# bindswitch lid:on output $laptop disable
+# bindswitch lid:off output $laptop enable
 
 ### Colors
 
@@ -260,5 +266,7 @@ bindsym XF86MonBrightnessDown exec "light -U 5"
 bindsym Shift+XF86MonBrightnessDown exec "light -U 1"
 
 exec --no-startup-id waybar
+exec --no-startup-id nextcloud --background
 exec --no-startup-id dropbox
 exec --no-startup-id mako
+exec --no-startup-id redshift
