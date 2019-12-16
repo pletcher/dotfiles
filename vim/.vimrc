@@ -11,6 +11,7 @@ Plug 'ctrlpvim/ctrlp.vim'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'elixir-editors/vim-elixir'
 Plug 'jiangmiao/auto-pairs'
+Plug 'junegunn/goyo.vim'
 Plug 'leafgarland/typescript-vim'
 Plug 'mxw/vim-jsx', { 'for': ['javascript'] }
 Plug 'pangloss/vim-javascript'
