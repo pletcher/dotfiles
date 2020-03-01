@@ -2,7 +2,6 @@
                ("--all")
                ("--no-verify"))
  (magit-pull
-  ("--rebase")
-  nil)
+  ("--rebase"))
  (magit-push nil)
  (magit-tag nil))
