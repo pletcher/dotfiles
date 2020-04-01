@@ -308,6 +308,11 @@
   (setq bibtex-completion-bibliography "~/Documents/writing/references.bib")
   (require 'org-ref))
 
+(use-package ox-reveal
+  :defines (org-reveal-root)
+  :init
+  (setq org-reveal-root "file:///home/pletcher/code/reveal.js"))
+
 (use-package pandoc-mode
   :hook (markdown-mode-hook))
 
@@ -4791,7 +4796,7 @@ P$\207"
      ("shell" :follow org--open-shell-link))))
  '(package-selected-packages
    (quote
-    (pandoc-mode evil-leader evil undo-tree autofill-mode auto-fill-mode nlinum sublimity add-node-modules-path ebib writegood-mode emmet-mode telephone-line apropospriate-theme prettier-js flycheck-rust flycheck-inline rust-mode tex-site auctex org-ref slime xresources-theme markdown-mode rainbow-delimiters json-mode graphql-mode elixir-mode editorconfig easy-kill f tide company yaml-mode diff-hl web-mode olivetti nim-mode cider clojure-mode smartparens paredit projectile counsel magit use-package))))
+    (ox-reveal org-reveal pandoc-mode evil-leader evil undo-tree autofill-mode auto-fill-mode nlinum sublimity add-node-modules-path ebib writegood-mode emmet-mode telephone-line apropospriate-theme prettier-js flycheck-rust flycheck-inline rust-mode tex-site auctex org-ref slime xresources-theme markdown-mode rainbow-delimiters json-mode graphql-mode elixir-mode editorconfig easy-kill f tide company yaml-mode diff-hl web-mode olivetti nim-mode cider clojure-mode smartparens paredit projectile counsel magit use-package))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

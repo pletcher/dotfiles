@@ -1,6 +1,7 @@
 # This file contains fish universal variable definitions.
 # VERSION: 3.0
 SETUVAR --export EDITOR:vim
+SETUVAR --export N_PREFIX:/home/pletcher/\x2en/
 SETUVAR THEME_EDEN_PROMPT_CHAR:\u276d
 SETUVAR XDG_DATA_HOME:/home/pletcher/\x2elocal/share
 SETUVAR __fish_init_2_39_8:\x1d
@@ -36,7 +37,7 @@ SETUVAR fish_pager_color_completion:normal
 SETUVAR fish_pager_color_description:B3A06D\x1eyellow
 SETUVAR fish_pager_color_prefix:white\x1e\x2d\x2dbold\x1e\x2d\x2dunderline
 SETUVAR fish_pager_color_progress:brwhite\x1e\x2d\x2dbackground\x3dcyan
-SETUVAR fish_user_paths:/home/pletcher/code/codium/bin\x1e/home/pletcher/code/flutter/bin/
+SETUVAR fish_user_paths:/home/pletcher/\x2elocal/bin\x1e/home/pletcher/\x2en/bin/\x1e/home/pletcher/\x2enode_modules/bin\x1e/home/pletcher/code/codium/bin\x1e/home/pletcher/code/flutter/bin/
 SETUVAR pure_begin_prompt_with_current_directory:true
 SETUVAR pure_color_command_duration:pure_color_warning
 SETUVAR pure_color_current_directory:pure_color_primary
@@ -72,4 +73,3 @@ SETUVAR pure_symbol_prompt:\u276f
 SETUVAR pure_symbol_reverse_prompt:\u276e
 SETUVAR pure_symbol_title_bar_separator:\u2014
 SETUVAR pure_threshold_command_duration:5
-SETUVAR theme_short_path:yes
