@@ -93,3 +93,8 @@ window:
   padding:
     x: 10
     y: 10
+
+key_bindings:
+  - { key: N, mods: Control, action: SpawnNewInstance }
+  - { key: Q, mods: Control|Shift, action: Quit }
+

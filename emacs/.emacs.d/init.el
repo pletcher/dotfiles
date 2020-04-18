@@ -131,9 +131,20 @@
 (setq use-package-always-ensure t)
 (setq use-package-verbose t)
 
-(use-package apropospriate-theme
+;; (load-theme 'ayu t)
+
+(use-package doom-themes
+  :defines (doom-themes-enable-bold doom-themes-enable-italic)
   :config
-  (load-theme 'apropospriate-dark t))
+  (setq doom-themes-enable-bold t)
+  (setq doom-themes-enable-italic t)
+  (load-theme 'doom-vibrant t)
+  ;; (load-theme 'doom-Iosvkem t)
+  (doom-themes-org-config))
+
+;; (use-package apropospriate-theme
+;;   :config
+;;   (load-theme 'apropospriate-dark t))
 
 ;; (use-package leuven-theme
 ;;   :defines (org-fontify-whole-heading-line)
@@ -175,17 +186,17 @@
   (add-hook 'dired-mode-hook 'diff-hl-dired-mode)
   (add-hook 'magit-post-refresh-hook 'diff-hl-magit-post-refresh))
 
-(use-package evil-leader
-  :config
-  (global-evil-leader-mode)
-  (evil-leader/set-leader ",")
-  (evil-leader/set-key
-   "b" 'switch-to-buffer
-   "w" 'save-buffer))
+;; (use-package evil-leader
+;;   :config
+;;   (global-evil-leader-mode)
+;;   (evil-leader/set-leader ",")
+;;   (evil-leader/set-key
+;;    "b" 'switch-to-buffer
+;;    "w" 'save-buffer))
 
-(use-package evil
-  :config
-  (evil-mode t))
+;; (use-package evil
+;;   :config
+;;   (evil-mode t))
 
 (use-package paredit
   :hook ((cider-repl-mode
@@ -199,7 +210,8 @@
   (setq projectile-completion-system 'ivy)
   :config
   (define-key projectile-mode-map (kbd "s-p") 'projectile-command-map)
-  (projectile-mode 1))
+  (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
+  (projectile-mode +1))
 
 (use-package smartparens
   :config
@@ -221,7 +233,8 @@
   :config
   (setq whitespace-line-column 100)
   (setq whitespace-style '(face empty trailing lines-tail))
-  :hook (prog-mode . whitespace-mode))
+  :hook ((prog-mode . whitespace-mode)
+         (before-save . whitespace-cleanup)))
 
 ;;;
 ;; programming language modes start here
@@ -251,6 +264,11 @@
   (setq emmet-expand-jsx-className? t)
   (setq emmet-self-closing-tag-style " /"))
 
+(use-package exec-path-from-shell
+  :config
+  (when (memq window-system '(mac ns x))
+    (exec-path-from-shell-initialize)))
+
 (use-package flycheck
   :init (global-flycheck-mode))
 
@@ -263,6 +281,9 @@
   :defer t)
 
 (use-package graphql-mode
+  :defer t)
+
+(use-package indium
   :defer t)
 
 (use-package json-mode
@@ -322,6 +343,9 @@
 (use-package rainbow-delimiters
   :hook (prog-mode . rainbow-delimiters-mode))
 
+(use-package rjsx-mode
+  :mode ("\\.js\\'" . rjsx-mode))
+
 (use-package ruby-mode
   :init
   (setq ruby-insert-encoding-magic-comment nil)
@@ -370,14 +394,15 @@
   (add-to-list 'auto-mode-alist '("\\.eex\\'" . web-mode))
   (add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
   (add-to-list 'auto-mode-alist '("\\.html\\'" . web-mode))
-  (add-to-list 'auto-mode-alist '("\\.js\\'" . web-mode))
-  (add-to-list 'auto-mode-alist '("\\.jsx\\'" . web-mode))
-  :config
-  (defadvice web-mode-highlight-part (around tweak-jsx activate)
-    (if (equal web-mode-content-type "jsx")
-        (let ((web-mode-enable-part-face nil))
-          ad-do-it)
-      ad-do-it)))
+  ;; (add-to-list 'auto-mode-alist '("\\.js\\'" . web-mode))
+  ;; (add-to-list 'auto-mode-alist '("\\.jsx\\'" . web-mode))
+  ;; :config
+  ;; (defadvice web-mode-highlight-part (around tweak-jsx activate)
+  ;;   (if (equal web-mode-content-type "jsx")
+  ;;       (let ((web-mode-enable-part-face nil))
+  ;;         ad-do-it)
+  ;;     ad-do-it))
+  )
 
 (use-package writegood-mode
   :config
@@ -393,6 +418,9 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(ansi-color-names-vector
+   ["#424242" "#EF9A9A" "#C5E1A5" "#FFEE58" "#64B5F6" "#E1BEE7" "#80DEEA" "#E0E0E0"])
+ '(beacon-color "#eab4484b8035")
  '(bibtex-align-at-equal-sign t)
  '(bibtex-autoadd-commas t)
  '(bibtex-contline-indentation 0)
@@ -404,8 +432,18 @@
  '(bibtex-text-indentation 17)
  '(custom-safe-themes
    (quote
-    ("bf390ecb203806cbe351b966a88fc3036f3ff68cd2547db6ee3676e87327b311" default)))
+    ("54472f6db535c18d72ca876a97ec4a575b5b51d7a3c1b384293b28f1708f961a" "bf390ecb203806cbe351b966a88fc3036f3ff68cd2547db6ee3676e87327b311" default)))
+ '(evil-emacs-state-cursor (quote ("#E57373" hbar)) t)
+ '(evil-insert-state-cursor (quote ("#E57373" bar)) t)
+ '(evil-normal-state-cursor (quote ("#FFEE58" box)) t)
+ '(evil-visual-state-cursor (quote ("#C5E1A5" box)) t)
  '(fill-column 80)
+ '(highlight-indent-guides-auto-enabled nil)
+ '(highlight-symbol-colors
+   (quote
+    ("#FFEE58" "#C5E1A5" "#80DEEA" "#64B5F6" "#E1BEE7" "#FFCC80")))
+ '(highlight-symbol-foreground-color "#E0E0E0")
+ '(highlight-tail-colors (quote (("#eab4484b8035" . 0) ("#424242" . 100))))
  '(js-indent-level 2)
  '(olivetti-body-width 80)
  '(org-agenda-files (quote ("~/Nextcloud/Columbia/Fall 2019/agenda.org")))
@@ -4796,7 +4834,10 @@ P$\207"
      ("shell" :follow org--open-shell-link))))
  '(package-selected-packages
    (quote
-    (ox-reveal org-reveal pandoc-mode evil-leader evil undo-tree autofill-mode auto-fill-mode nlinum sublimity add-node-modules-path ebib writegood-mode emmet-mode telephone-line apropospriate-theme prettier-js flycheck-rust flycheck-inline rust-mode tex-site auctex org-ref slime xresources-theme markdown-mode rainbow-delimiters json-mode graphql-mode elixir-mode editorconfig easy-kill f tide company yaml-mode diff-hl web-mode olivetti nim-mode cider clojure-mode smartparens paredit projectile counsel magit use-package))))
+    (exec-path-from-shell indium rjsx-mode bundler ox-reveal org-reveal pandoc-mode evil-leader evil undo-tree autofill-mode auto-fill-mode nlinum sublimity add-node-modules-path ebib writegood-mode emmet-mode telephone-line apropospriate-theme prettier-js flycheck-rust flycheck-inline rust-mode tex-site auctex org-ref slime xresources-theme markdown-mode rainbow-delimiters json-mode graphql-mode elixir-mode editorconfig easy-kill f tide company yaml-mode diff-hl web-mode olivetti nim-mode cider clojure-mode smartparens paredit projectile counsel magit use-package)))
+ '(pos-tip-background-color "#3a513a513a51")
+ '(pos-tip-foreground-color "#9E9E9E")
+ '(tabbar-background-color "#353335333533"))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

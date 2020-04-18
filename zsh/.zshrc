@@ -102,11 +102,14 @@ function md2docx() {
   pandoc --filter pandoc-citeproc --csl /home/pletcher/code/csls/chicago-author-date.csl --reference-doc /home/pletcher/Documents/writing/reference.docx -i $1 -o $1-pandoc.docx
 }
 
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/home/pletcher/google-cloud-sdk/path.zsh.inc' ]; then . '/home/pletcher/google-cloud-sdk/path.zsh.inc'; fi
+function md-cmp() {
+  pandoc --filter pandoc-citeproc --csl /home/pletcher/code/csls/chicago-author-date.csl -i $1 -V fontsize=12pt -V mainfont="CMU Serif" --pdf-engine=xelatex -o $1-pandoc.pdf
+  md2docx $1
+}
 
-# The next line enables shell command completion for gcloud.
-if [ -f '/home/pletcher/google-cloud-sdk/completion.zsh.inc' ]; then . '/home/pletcher/google-cloud-sdk/completion.zsh.inc'; fi
+if [[ -f ~/.rbenv/bin/rbenv ]]; then
+	eval "$(rbenv init -)"
+fi
 
 export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
 
