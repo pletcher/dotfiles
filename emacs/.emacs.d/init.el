@@ -111,6 +111,11 @@
 (setq scroll-step 1)
 (setq tab-always-indent 'complete)
 
+;; enable using left Alt for diacritics
+(setq mac-command-modifier 'meta
+      mac-option-modifier 'none
+      default-input-method "MacOSX")
+
 (global-hl-line-mode +1)
 
 (menu-bar-mode -1)
@@ -184,19 +189,9 @@
 (use-package diff-hl
   :config
   (add-hook 'dired-mode-hook 'diff-hl-dired-mode)
-  (add-hook 'magit-post-refresh-hook 'diff-hl-magit-post-refresh))
-
-;; (use-package evil-leader
-;;   :config
-;;   (global-evil-leader-mode)
-;;   (evil-leader/set-leader ",")
-;;   (evil-leader/set-key
-;;    "b" 'switch-to-buffer
-;;    "w" 'save-buffer))
-
-;; (use-package evil
-;;   :config
-;;   (evil-mode t))
+  (add-hook 'magit-pre-refresh-hook 'diff-hl-magit-pre-refresh)
+  (add-hook 'magit-post-refresh-hook 'diff-hl-magit-post-refresh)
+  (global-diff-hl-mode))
 
 (use-package paredit
   :hook ((cider-repl-mode
@@ -321,12 +316,12 @@
 
 (use-package org-ref
   :init
-  (setq reftex-default-bibliography "~/Documents/writing/references.bib")
-  (setq org-ref-default-bibliography '("~/Documents/writing/references.bib"))
+  (setq reftex-default-bibliography "~/writing/references.bib")
+  (setq org-ref-default-bibliography '("~/writing/references.bib"))
   (setq org-ref-default-citation-link "autocite")
   (setq org-ref-insert-cite-key "C-c c")
   (setq org-ref-pdf-directory "~/Nextcloud/references")
-  (setq bibtex-completion-bibliography "~/Documents/writing/references.bib")
+  (setq bibtex-completion-bibliography "~/writing/references.bib")
   (require 'org-ref))
 
 (use-package ox-reveal
@@ -4796,9 +4791,9 @@ q\210\306\216	c\210\307 \210\310 -\207"
      ("file+emacs")
      ("doi" :follow doi-link-menu :export
       #[(doi desc format)
-        "\304=\203 \300\305	
+        "\304=\203 \300\305
 \206 \306
-P$\207\307=\205% \300\310	
+P$\207\307=\205% \300\310
 \206$ \306
 P$\207"
         [format doi-utils-dx-doi-org-url doi desc html "<a href=\"%s%s\">%s</a>" "doi:" latex "\\href{%s%s}{%s}"]

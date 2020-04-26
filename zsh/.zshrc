@@ -99,11 +99,15 @@ function mmv() {
 }
 
 function md2docx() {
-  pandoc --filter pandoc-citeproc --csl /home/pletcher/code/csls/chicago-author-date.csl --reference-doc /home/pletcher/Documents/writing/reference.docx -i $1 -o $1-pandoc.docx
+  today="$(date +%Y-%m-%d)"
+  pandoc --filter pandoc-citeproc --csl $HOME/code/csls/chicago-author-date.csl \
+    --reference-doc $HOME/writing/reference.docx -i $1 -o $(date +%Y-%m-%d)_${1/%.md/.docx}
 }
 
-function md-cmp() {
-  pandoc --filter pandoc-citeproc --csl /home/pletcher/code/csls/chicago-author-date.csl -i $1 -V fontsize=12pt -V mainfont="CMU Serif" --pdf-engine=xelatex -o $1-pandoc.pdf
+function compile_md() {
+  today="$(date +%Y-%m-%d)"
+  pandoc --filter pandoc-citeproc --csl $HOME/code/csls/chicago-author-date.csl \
+    -i $1 -V fontsize=12pt -V mainfont="CMU Serif" --pdf-engine=xelatex -o $(date +%Y-%m-%d)_${1/%.md/.pdf}
   md2docx $1
 }
 
