@@ -8,7 +8,7 @@ LOCAL_BIN=$HOME/.local/bin
 NIMBLE=$HOME/.nimble/bin
 NODE_MODULES=$HOME/.node_modules/bin
 YARN_MODULES=$HOME/.config/yarn/global/node_modules/.bin
-PYENV=$HOME/.pyenv/shims
+export PYENV_ROOT=$HOME/.pyenv
 RBENV_BIN=$HOME/.rbenv/bin
 RBENV_SHIMS=$HOME/.rbenv/shims
 SBIN=/usr/local/sbin
@@ -19,6 +19,8 @@ YARN=$HOME/.yarn/bin
 export N_PREFIX=$HOME/.n
 
 N="$N_PREFIX/bin"
+
+export QMK_HOME=$HOME/code/qmk_firmware
 
 typeset -U path
 path=(
@@ -33,7 +35,7 @@ path=(
 	$N
 	$YARN
 	$YARN_MODULES
-	$PYENV
+	$PYENV_ROOT/bin
 	$LOCAL_BIN
 	$USR_LOCAL_BIN
 	$USR_BIN

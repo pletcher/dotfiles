@@ -99,21 +99,28 @@ function mmv() {
 }
 
 function md2docx() {
-  today="$(date +%Y-%m-%d)"
-  pandoc --filter pandoc-citeproc --csl $HOME/code/csls/chicago-author-date.csl \
-    --reference-doc $HOME/writing/reference.docx -i $1 -o $(date +%Y-%m-%d)_${1/%.md/.docx}
+  pandoc -d markdown -i $1 -o $(date +%Y-%m-%d)_${1/%.md/.docx}
 }
 
 function compile_md() {
-  today="$(date +%Y-%m-%d)"
-  pandoc --filter pandoc-citeproc --csl $HOME/code/csls/chicago-author-date.csl \
-    -i $1 -V fontsize=12pt -V mainfont="CMU Serif" --pdf-engine=xelatex -o $(date +%Y-%m-%d)_${1/%.md/.pdf}
+  pandoc --filter pandoc-citeproc \
+    -i $1 -V fontsize=12pt -V mainfont="CMU Serif" \
+    --pdf-engine=xelatex -o $(date +%Y-%m-%d)_${1/%.md/.pdf}
   md2docx $1
 }
 
-if [[ -f ~/.rbenv/bin/rbenv ]]; then
+function org2docx() {
+  pandoc -d org -i $1 -o $(date +%Y-%m-%d)_${1/%.org/%.docx}
+}
+
+export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
+
+if [ -x "$(command -v rbenv)" ]; then
 	eval "$(rbenv init -)"
 fi
 
-export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+if command -v pyenv 1>/dev/null 2>&1; then
+  eval "$(pyenv init -)"
+fi
 
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
