@@ -4,3 +4,6 @@ if not functions -q fisher
     fish -c fisher
 end
 
+
+test -e {$HOME}/.iterm2_shell_integration.fish ; and source {$HOME}/.iterm2_shell_integration.fish
+

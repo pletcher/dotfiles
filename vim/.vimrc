@@ -30,8 +30,6 @@ set nocompatible
 syntax on
 filetype plugin indent on
 
-" colorscheme wal
-
 set autoindent
 set backspace=indent,eol,start
 set display=lastline

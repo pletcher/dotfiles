@@ -12,6 +12,7 @@ export PYENV_ROOT=$HOME/.pyenv
 RBENV_BIN=$HOME/.rbenv/bin
 RBENV_SHIMS=$HOME/.rbenv/shims
 SBIN=/usr/local/sbin
+SUBLIME="/Applications/Sublime Text.app/Contents/SharedSupport/bin"
 USR_LOCAL_BIN=/usr/local/bin
 USR_BIN=/usr/bin
 YARN=$HOME/.yarn/bin
@@ -32,12 +33,13 @@ path=(
 	$GO_BIN
 	$NIMBLE
 	$NODE_MODULES
-	$N
+  $N
 	$YARN
 	$YARN_MODULES
 	$PYENV_ROOT/bin
+  $SUBLIME
 	$LOCAL_BIN
-	$USR_LOCAL_BIN
+  $USR_LOCAL_BIN
 	$USR_BIN
 	$BIN
 	/usr/lib/jvm/default/bin

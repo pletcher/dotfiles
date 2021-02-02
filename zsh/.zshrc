@@ -70,7 +70,12 @@ source $ZSH/oh-my-zsh.sh
 # You may need to manually set your language environment
 export LANG=en_US.UTF-8
 
-export EDITOR='vim'
+export EDITOR='nvim'
+
+alias vim=nvim
+
+ulimit -n 200000
+ulimit -u 2048
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -93,6 +98,10 @@ function emc() {
 	emacsclient -c -a '' $1
 }
 
+function light() {
+  pbpaste | highlight --syntax=js --font-size 24 --font Iosevka --style solarized-light -O rtf | pbcopy
+}
+
 function mmv() {
   mkdir -p -- "$argv[-1]"
   mv "$@"
@@ -110,7 +119,7 @@ function compile_md() {
 }
 
 function org2docx() {
-  pandoc -d org -i $1 -o $(date +%Y-%m-%d)_${1/%.org/%.docx}
+  pandoc -d org -i $1 -o $(date +%Y-%m-%d)_${1/%.org/.docx}
 }
 
 export RUBY_CONFIGURE_OPTS="--with-openssl-dir=$(brew --prefix openssl@1.1)"
@@ -123,4 +132,4 @@ if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init -)"
 fi
 
-export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+export PATH="$HOME/.n/bin:$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"

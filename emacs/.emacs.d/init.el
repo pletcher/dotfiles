@@ -121,7 +121,7 @@
 (menu-bar-mode -1)
 (scroll-bar-mode -1)
 
-(set-frame-font "Iosevka Term" nil t)
+(set-frame-font "Iosevka Term-13" nil t)
 (set-frame-parameter (selected-frame) 'alpha '(98 . 90))
 
 (add-to-list 'default-frame-alist '(alpha . (98 . 90)))
@@ -137,8 +137,6 @@
 (setq use-package-always-ensure t)
 (setq use-package-verbose t)
 
-;; (load-theme 'ayu t)
-
 (use-package doom-themes
   :after (neotree)
   :defines (doom-themes-enable-bold doom-themes-enable-italic doom-vibrant-brighter-modeline)
@@ -147,7 +145,6 @@
   (setq doom-themes-enable-italic t)
   (load-theme 'doom-vibrant t)
   ;; (load-theme 'doom-Iosvkem t)
-  ;; (doom-themes-org-config)
   (doom-themes-neotree-config)
   (setq doom-vibrant-brighter-modeline t))
 
@@ -163,7 +160,7 @@
 ;;   :init
 ;;   (setq org-fontify-whole-heading-line t)
 ;;   :config
-;;   (load-theme 'leuven t))
+;;   (load-theme 'leuven t t))
 
 (use-package company
   :config
@@ -229,7 +226,17 @@
   (sp-use-paredit-bindings)
   (show-smartparens-global-mode +1)
   (smartparens-global-mode 1)
-  (sp-pair "{" nil :post-handlers '(("||\n[i]" "RET"))))
+  (sp-pair "{" nil :post-handlers '(("||\n[i]" "RET")))
+  (sp-with-modes '(web-mode)
+    (sp-local-pair "%" "%"
+                   :unless '(sp-in-string-p)
+                   :post-handlers '(((lambda (&rest _ignored)
+                                       (just-one-space)
+                                       (save-excursion (insert " ")))
+                                     "SPC" "=" "#")))
+    (sp-local-tag "%" "<% "  " %>")
+    (sp-local-tag "=" "<%= " " %>")
+    (sp-local-tag "#" "<%# " " %>")))
 
 (use-package swiper
   :config
@@ -267,7 +274,8 @@
   (setq ebib-autogenerate-keys nil)
   (setq ebib-bibtex-dialect 'biblatex)
   (setq ebib-notes-directory "~/writing/notes/")
-  (setq ebib-preload-bib-files '("~/writing/references.bib")))
+  (setq ebib-preload-bib-files '("~/writing/references.bib"))
+  (setq ebib-reading-list-file "~/writing/ebib-reading-list.org"))
 
 (use-package editorconfig
   :hook (prog-mode . editorconfig-mode))
@@ -366,11 +374,12 @@
 	"xelatex -interaction nonstopmode -output-directory %o %f"
 	"xelatex -interaction nonstopmode -output-directory %o %f"))
   (setq org-startup-folded nil)
+  (add-hook 'org-mode-hook #'turn-on-auto-fill)
   :config
   (require 'ox-extra)
   (ox-extras-activate '(ignore-headlines))
-  (define-key org-mode-map (kbd "C-c q") 'org-begin-end-quote)
-  (define-key org-mode-map (kbd "C-c v") 'org-begin-end-verse))
+  (define-key org-mode-map (kbd "C-c C-b") 'org-begin-end-quote)
+  (define-key org-mode-map (kbd "C-c C-v") 'org-begin-end-verse))
 
 (use-package org-noter)
 
@@ -462,6 +471,9 @@
   (setq web-mode-attr-value-indent-offset 2)
   (setq web-mode-code-indent-offset 2)
   (setq web-mode-css-indent-offset 2)
+  ;; https://github.com/bbatsov/prelude/blob/master/modules/prelude-web.el#L50
+  ;; make web-mode play nice with smartparens
+  (setq web-mode-enable-auto-pairing nil)
   (setq web-mode-markup-indent-offset 2)
   (add-to-list 'auto-mode-alist '("\\.eex\\'" . web-mode))
   (add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
@@ -490,12 +502,10 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(ansi-color-names-vector
-   ["#424242" "#EF9A9A" "#C5E1A5" "#FFEE58" "#64B5F6" "#E1BEE7" "#80DEEA" "#E0E0E0"])
  '(beacon-color "#eab4484b8035")
  '(custom-safe-themes
    (quote
-    ("54472f6db535c18d72ca876a97ec4a575b5b51d7a3c1b384293b28f1708f961a" "bf390ecb203806cbe351b966a88fc3036f3ff68cd2547db6ee3676e87327b311" default)))
+    ("711efe8b1233f2cf52f338fd7f15ce11c836d0b6240a18fffffc2cbd5bfe61b0" default)))
  '(ebib-notes-template "* %T
 :PROPERTIES:
 %K
@@ -510,10 +520,11 @@
  '(highlight-symbol-foreground-color "#E0E0E0")
  '(highlight-tail-colors (quote (("#eab4484b8035" . 0) ("#424242" . 100))))
  '(js-indent-level 2)
+ '(org-agenda-files (quote ("~/writing/ebib-reading-list.org")))
  '(org-noter-notes-search-path (quote ("~/writing/notes/")))
  '(package-selected-packages
    (quote
-    (org-roam coffee-mode projectile-rails org-plus-contrib doom-modeline haml-mode helm-mode org-bullets neotree all-the-icons robe org-noter exec-path-from-shell indium rjsx-mode bundler ox-reveal org-reveal pandoc-mode evil-leader evil undo-tree autofill-mode auto-fill-mode nlinum sublimity add-node-modules-path ebib writegood-mode emmet-mode telephone-line apropospriate-theme prettier-js flycheck-rust flycheck-inline rust-mode tex-site auctex org-ref slime xresources-theme markdown-mode rainbow-delimiters json-mode graphql-mode elixir-mode editorconfig easy-kill f tide company yaml-mode diff-hl web-mode olivetti nim-mode cider clojure-mode smartparens paredit projectile counsel magit use-package)))
+    (doom-themes prog-mode org-roam coffee-mode projectile-rails org-plus-contrib doom-modeline haml-mode helm-mode org-bullets neotree all-the-icons robe org-noter exec-path-from-shell indium rjsx-mode bundler ox-reveal org-reveal pandoc-mode evil-leader evil undo-tree autofill-mode auto-fill-mode nlinum sublimity add-node-modules-path ebib writegood-mode emmet-mode telephone-line apropospriate-theme prettier-js flycheck-rust flycheck-inline rust-mode tex-site auctex org-ref slime xresources-theme markdown-mode rainbow-delimiters json-mode graphql-mode elixir-mode editorconfig easy-kill f tide company yaml-mode diff-hl web-mode olivetti nim-mode cider clojure-mode smartparens paredit projectile counsel magit use-package)))
  '(pdf-tools-handle-upgrades nil)
  '(pos-tip-background-color "#3a513a513a51")
  '(pos-tip-foreground-color "#9E9E9E")
